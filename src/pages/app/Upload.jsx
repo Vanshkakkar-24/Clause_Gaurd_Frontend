@@ -3,14 +3,17 @@ import FileUpload from "../../components/FileUpload"
 import Loader from "../../components/Loader"
 import Toast from "../../components/Toast"
 import api from "../../services/api"
+import { useNavigate } from "react-router-dom"
 
 const Upload = () => {
 
-  const [file,setFile] = useState(null)
-  const [loading,setLoading] = useState(false)
-  const [response,setResponse] = useState(null)
-  const [error,setError] = useState("")
-  const [success,setSuccess] = useState("")
+  const navigate = useNavigate()
+
+  const [file, setFile] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [response, setResponse] = useState(null)
+  const [error, setError] = useState("")
+  const [success, setSuccess] = useState("")
 
   const handleUpload = (selectedFile) => {
 
@@ -23,35 +26,35 @@ const Upload = () => {
 
   const handleSubmit = async () => {
 
-    if(!file){
+    if (!file) {
 
       setError("Upload a file first")
       return
 
     }
 
-    try{
+    try {
 
       setLoading(true)
       setError("")
       setSuccess("")
 
       const formData = new FormData()
-      formData.append("file",file)
+      formData.append("file", file)
 
-      const res = await api.post("/analyze/file",formData)
+      const res = await api.post("/analyze/file", formData)
 
       setResponse(res.data)
 
       setSuccess("Contract analyzed successfully")
 
     }
-    catch{
+    catch {
 
       setError("Upload failed")
 
     }
-    finally{
+    finally {
 
       setLoading(false)
 
@@ -62,10 +65,10 @@ const Upload = () => {
 
   const riskColor = (level) => {
 
-    if(level==="High")
+    if (level === "High")
       return "bg-red-100 text-red-700 border-red-200"
 
-    if(level==="Medium")
+    if (level === "Medium")
       return "bg-yellow-100 text-yellow-700 border-yellow-200"
 
     return "bg-green-100 text-green-700 border-green-200"
@@ -77,11 +80,11 @@ const Upload = () => {
 
     <div className="max-w-6xl mx-auto px-4 py-10">
 
-      {loading && <Loader/>}
+      {loading && <Loader />}
 
-      {error && <Toast message={error} type="error"/>}
+      {error && <Toast message={error} type="error" />}
 
-      {success && <Toast message={success} type="success"/>}
+      {success && <Toast message={success} type="success" />}
 
 
       <h1 className="text-3xl font-semibold mb-2">
@@ -227,7 +230,7 @@ const Upload = () => {
 
                 Object.entries(
                   response.risk_breakdown
-                ).map(([key,value])=>(
+                ).map(([key, value]) => (
 
                   <div
                     key={key}
@@ -239,7 +242,7 @@ const Upload = () => {
 
                     <p className="text-sm text-gray-500">
 
-                      {key.replace("_"," ")}
+                      {key.replace("_", " ")}
 
                     </p>
 
@@ -265,7 +268,7 @@ const Upload = () => {
 
               {
 
-                response.risky_clauses.map((clause,i)=>(
+                response.risky_clauses.map((clause, i) => (
 
                   <div
                     key={i}
@@ -321,8 +324,55 @@ const Upload = () => {
 
             </div>
 
+            {/* NEGOTIATION CTA */}
+
+            <div className="
+  mt-10
+  p-6
+  border
+  rounded-xl
+  bg-gradient-to-r
+  from-indigo-50
+  to-white
+  flex
+  flex-col
+  md:flex-row
+  items-center
+  justify-between
+  gap-4
+">
+
+              <p className="text-gray-700 font-medium">
+                Want a negotiation email?
+              </p>
+
+              <button
+                onClick={() =>
+                  navigate("/app/negotiate", {
+                    state: {
+                      clauses: response.risky_clauses,
+                      contract_type: response.contract_overview.contract_type
+                    }
+                  })
+                }
+                className="
+    px-6 py-2
+    bg-indigo-600
+    text-white
+    rounded-lg
+    shadow
+    hover:bg-indigo-700
+  "
+              >
+                Generate negotiation email
+              </button>
+
+            </div>
+
 
           </div>
+
+
 
         )
 

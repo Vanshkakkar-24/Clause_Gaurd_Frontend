@@ -22,6 +22,11 @@ export const registerUser = (data) =>
 export const loginUser = (data) =>
   API.post("/auth/login", data);
 
+export const googleAuth = (token) =>
+  API.post("/auth/google", {
+    token
+  });
+
 // ANALYSIS
 
 export const analyzeContract = (file) => {

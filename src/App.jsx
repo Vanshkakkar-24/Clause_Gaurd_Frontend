@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import PrivateRoute from "./routes/PrivateRoute"
 import AppLayout from "./layouts/AppLayout"
@@ -20,50 +21,52 @@ function App() {
 
   return (
 
-    <BrowserRouter>
+    <GoogleOAuthProvider clientId="964790682223-ukg7l37gnjqibdfnh1rdudkkudmpv13u.apps.googleusercontent.com">
 
-      <Routes>
+      <BrowserRouter>
 
-        {/* public */}
+        <Routes>
 
-        <Route path="/" element={<Home />} />
+          {/* public */}
 
-        <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
 
-        <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+
+          <Route path="/register" element={<Register />} />
 
 
+          {/* private */}
 
-        {/* private */}
+          <Route element={<PrivateRoute />}>
 
-        <Route element={<PrivateRoute />}>
+            <Route element={<AppLayout />}>
 
-          <Route element={<AppLayout />}>
+              <Route path="/app/upload" element={<Upload />} />
 
-            <Route path="/app/upload" element={<Upload />} />
+              <Route path="/app/analysis" element={<Analysis />} />
 
-            <Route path="/app/analysis" element={<Analysis />} />
+              <Route path="/app/compare" element={<Compare />} />
 
-            <Route path="/app/compare" element={<Compare />} />
+              <Route path="/app/chat" element={<Chat />} />
 
-            <Route path="/app/chat" element={<Chat />} />
+              <Route path="/app/negotiate" element={<Negotiate />} />
 
-            <Route path="/app/negotiate" element={<Negotiate />} />
+              <Route path="/app/simplify" element={<Simplifier />} />
 
-            <Route path="/app/simplify" element={<Simplifier />} />
+              <Route path="/app/history" element={<History />} />
 
-            <Route path="/app/history" element={<History />} />
+              <Route path="/app/settings" element={<Settings />} />
 
-            <Route path="/app/settings" element={<Settings />} />
+            </Route>
 
           </Route>
 
-        </Route>
+        </Routes>
 
+      </BrowserRouter>
 
-      </Routes>
-
-    </BrowserRouter>
+    </GoogleOAuthProvider>
 
   )
 

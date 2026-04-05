@@ -4,7 +4,7 @@ const Testimonials = () => (
 
     <div className="max-w-7xl mx-auto px-6">
 
-      <h2 className="text-4xl font-bold text-center mb-14">
+      <h2 className="text-4xl font-bold text-center mb-14 text-gray-700">
 
         Trusted by Students, Freelancers & Businesses
 
@@ -21,13 +21,13 @@ const Testimonials = () => (
 
             ⭐⭐⭐⭐⭐
 
-            <p className="text-gray-600 text-sm mt-3">
+            <p className="text-gray-600 text-sm mt-3 ">
 
               {t.text}
 
             </p>
 
-            <div className="mt-4 font-medium">
+            <div className="mt-4 font-medium text-gray-600">
 
               {t.name}
 

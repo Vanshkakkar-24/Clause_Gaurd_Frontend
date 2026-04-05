@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { registerUser } from "../../services/api";
 import Navbar from "../../components/Navbar";
+import { GoogleLogin } from "@react-oauth/google";
+import { googleAuth } from "../../services/api";
 
 const Register = () => {
 
@@ -15,6 +17,30 @@ const Register = () => {
     confirm_password: "",
     agree: false
   });
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+
+    try {
+
+      const res = await googleAuth(
+        credentialResponse.credential
+      );
+
+      localStorage.setItem(
+        "token",
+        res.data.access_token
+      );
+
+      navigate("/");
+
+    }
+    catch {
+
+      alert("Google signup failed");
+
+    }
+
+  };
 
   const handleChange = (e) => {
 
@@ -229,13 +255,14 @@ const Register = () => {
 
             {/* Google */}
 
-            <button className="w-full border py-2.5 rounded-lg flex justify-center gap-2 hover:bg-slate-50">
+            <div className="flex justify-center">
 
-              <span>G</span>
+              <GoogleLogin
+                onSuccess={handleGoogleSuccess}
+                onError={() => alert("Google signup failed")}
+              />
 
-              Sign up with Google
-
-            </button>
+            </div>
 
 
             {/* Login link */}

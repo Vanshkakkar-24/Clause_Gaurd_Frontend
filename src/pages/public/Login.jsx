@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { loginUser } from "../../services/api";
+import { loginUser, googleAuth } from "../../services/api";
+import { GoogleLogin } from "@react-oauth/google";
 import Navbar from "../../components/Navbar";
 
 const Login = () => {
@@ -34,6 +35,31 @@ const Login = () => {
 
   };
 
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+
+    try {
+
+      const res = await googleAuth(
+        credentialResponse.credential
+      );
+
+      localStorage.setItem(
+        "token",
+        res.data.access_token
+      );
+
+      navigate("/");
+
+    } catch {
+
+      alert("Google login failed");
+
+    }
+
+  };
+
+
   return (
 
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900 text-white">
@@ -41,8 +67,6 @@ const Login = () => {
       <Navbar />
 
       <div className="grid md:grid-cols-2 min-h-[90vh]">
-
-        {/* LEFT SIDE */}
 
         <div className="hidden md:flex flex-col justify-center px-20">
 
@@ -80,8 +104,6 @@ const Login = () => {
 
 
 
-        {/* RIGHT SIDE */}
-
         <div className="flex items-center justify-center p-6">
 
           <div className="w-full max-w-md bg-white text-slate-900 rounded-2xl shadow-xl p-8">
@@ -108,8 +130,7 @@ const Login = () => {
             <input
               value={email}
               onChange={(e)=>setEmail(e.target.value)}
-              placeholder="you@email.com"
-              className="w-full border mt-1 mb-4 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full border mt-1 mb-4 px-4 py-2 rounded-lg focus:ring-2 focus:ring-indigo-500"
             />
 
 
@@ -123,14 +144,13 @@ const Login = () => {
               type="password"
               value={password}
               onChange={(e)=>setPassword(e.target.value)}
-              placeholder="Enter password"
-              className="w-full border mt-1 mb-6 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full border mt-1 mb-6 px-4 py-2 rounded-lg focus:ring-2 focus:ring-indigo-500"
             />
 
 
             <button
               onClick={handleLogin}
-              className="w-full py-2.5 rounded-lg text-white font-medium bg-gradient-to-r from-indigo-500 to-indigo-600 hover:opacity-90 transition"
+              className="w-full py-2.5 rounded-lg text-white font-medium bg-gradient-to-r from-indigo-500 to-indigo-600"
             >
 
               Log In
@@ -145,15 +165,14 @@ const Login = () => {
             </div>
 
 
-            <button
-              className="w-full border py-2.5 rounded-lg flex items-center justify-center gap-2 hover:bg-slate-50"
-            >
+            <div className="flex justify-center">
 
-              <span className="text-lg">G</span>
+              <GoogleLogin
+                onSuccess={handleGoogleSuccess}
+                onError={() => alert("Google login failed")}
+              />
 
-              Continue with Google
-
-            </button>
+            </div>
 
 
             <p className="text-sm text-center mt-6">

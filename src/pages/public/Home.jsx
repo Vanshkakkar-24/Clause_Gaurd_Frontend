@@ -6,6 +6,7 @@ import Steps from "../../components/Steps";
 import Testimonials from "../../components/Testimonials";
 import FAQ from "../../components/FAQ";
 import Footer from "../../components/Footer";
+import Marquee from "../../components/Marquee";
 
 const Home = () => {
 
@@ -16,6 +17,7 @@ const Home = () => {
       <Navbar />
 
       <Hero />
+      <Marquee />
 
       <Problem />
 

@@ -1,8 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const token = localStorage.getItem("token");
 
@@ -11,66 +12,181 @@ const Navbar = () => {
     localStorage.removeItem("token");
 
     navigate("/");
+
   };
+
+
+  const navLink = (path, label) => (
+
+    <Link
+      to={path}
+      className={`
+        text-sm
+        font-medium
+        transition
+        px-3
+        py-2
+        rounded-lg
+        ${location.pathname === path
+          ? "bg-indigo-600 text-white"
+          : "text-slate-300 hover:text-white hover:bg-white/10"
+        }
+      `}
+    >
+
+      {label}
+
+    </Link>
+
+  );
+
 
   return (
 
-    <header className="border-b border-slate-800">
+    <header className="
+      sticky
+      top-0
+      z-50
+      backdrop-blur
+      bg-gradient-to-r
+      from-[#0b1026]
+      to-[#121a3a]
+      border-b
+      border-white/10
+    ">
 
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div className="
+        max-w-7xl
+        mx-auto
+        px-6
+        py-3
+        flex
+        justify-between
+        items-center
+      ">
 
-        <Link to="/" className="text-xl font-bold text-indigo-400">
+
+        {/* LOGO */}
+
+        <Link
+          to="/"
+          className="
+            text-xl
+            font-bold
+            text-indigo-400
+            tracking-wide
+          "
+        >
 
           ContractIQ
 
         </Link>
 
-        <nav className="flex gap-6 items-center">
 
-          {token && (
 
-            <>
-              <Link to="/app/upload">Upload</Link>
+        {/* NAV LINKS */}
 
-              <Link to="/app/compare">Compare</Link>
+        <nav className="flex items-center gap-3">
 
-              <Link to="/app/chat">Chat</Link>
+          {
 
-              <Link to="/app/history">History</Link>
+            token && (
 
-              <Link to="/app/settings">Settings</Link>
+              <>
 
-              <button
-                onClick={logout}
-                className="bg-red-500 px-4 py-2 rounded"
-              >
-                Logout
-              </button>
-            </>
-          )}
+                {navLink("/app/upload","Upload")}
 
-          {!token && (
+                {navLink("/app/compare","Compare")}
 
-            <>
-              <Link to="/login">
-                Login
-              </Link>
+                {navLink("/app/chat","Chat")}
 
-              <Link
-                to="/register"
-                className="bg-indigo-500 px-4 py-2 rounded"
-              >
-                Get Started
-              </Link>
-            </>
-          )}
+                {navLink("/app/history","History")}
+
+                {navLink("/app/settings","Settings")}
+
+
+                <button
+                  onClick={logout}
+                  className="
+                    ml-3
+                    px-4
+                    py-2
+                    rounded-lg
+                    text-sm
+                    font-medium
+                    bg-red-500
+                    hover:bg-red-600
+                    text-white
+                    transition
+                  "
+                >
+
+                  Logout
+
+                </button>
+
+              </>
+
+            )
+
+          }
+
+
+          {
+
+            !token && (
+
+              <>
+
+                <Link
+                  to="/login"
+                  className="
+                    text-sm
+                    text-slate-300
+                    hover:text-white
+                    transition
+                  "
+                >
+
+                  Login
+
+                </Link>
+
+
+                <Link
+                  to="/register"
+                  className="
+                    ml-2
+                    px-4
+                    py-2
+                    rounded-lg
+                    text-sm
+                    font-medium
+                    bg-indigo-600
+                    hover:bg-indigo-700
+                    text-white
+                    transition
+                  "
+                >
+
+                  Get Started
+
+                </Link>
+
+              </>
+
+            )
+
+          }
 
         </nav>
 
       </div>
 
     </header>
+
   );
+
 };
 
 export default Navbar;
