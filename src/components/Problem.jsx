@@ -1,60 +1,66 @@
-const Problem = () => (
+import { useTranslation } from "react-i18next";
 
-  <section className="py-28 bg-gray-50">
+const Problem = () => {
 
-    <div className="max-w-6xl mx-auto px-6">
+  const { t } = useTranslation();
 
-      <div className="text-center mb-14">
+  return (
 
-        <span className="bg-indigo-100 text-indigo-600 px-3 py-1 rounded-full text-sm">
+    <section className="py-28 bg-gray-50">
 
-          The Problem
+      <div className="max-w-6xl mx-auto px-6">
 
-        </span>
+        <div className="text-center mb-14">
 
-        <h2 className="text-4xl font-bold mt-4 text-gray-800">
+          <span className="bg-indigo-100 text-indigo-600 px-3 py-1 rounded-full text-sm">
 
-          You Shouldn't Need a Lawyer to
-          Understand What You're Signing
+            {t("problem.badge")}
 
-        </h2>
+          </span>
 
-        <p className="text-gray-500 mt-4 max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold mt-4 text-gray-800">
 
-          Contracts are written by lawyers, for lawyers.
-          ContractIQ bridges that gap for everyone else.
+            {t("problem.title")}
 
-        </p>
+          </h2>
+
+          <p className="text-gray-500 mt-4 max-w-2xl mx-auto">
+
+            {t("problem.subtitle")}
+
+          </p>
+
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+
+          <Card
+            icon="📄"
+            title={t("problem.cards.c1.title")}
+            desc={t("problem.cards.c1.desc")}
+          />
+
+          <Card
+            icon="⚠️"
+            title={t("problem.cards.c2.title")}
+            desc={t("problem.cards.c2.desc")}
+          />
+
+          <Card
+            icon="💰"
+            title={t("problem.cards.c3.title")}
+            desc={t("problem.cards.c3.desc")}
+          />
+
+        </div>
 
       </div>
 
-      <div className="grid md:grid-cols-3 gap-8">
+    </section>
 
-        <Card
-          icon="📄"
-          title="Complex Legal Language"
-          desc="Dense legalese makes it difficult to understand what you're agreeing to."
-        />
+  );
 
-        <Card
-          icon="⚠️"
-          title="Hidden Risky Clauses"
-          desc="Auto-renewals, IP ownership traps, and hidden penalties buried in fine print."
-        />
-
-        <Card
-          icon="💰"
-          title="Costly Legal Consultations"
-          desc="Hiring lawyers for every contract is expensive and time consuming."
-        />
-
-      </div>
-
-    </div>
-
-  </section>
-
-)
+};
 
 const Card = ({ icon, title, desc }) => (
 
@@ -95,6 +101,6 @@ const Card = ({ icon, title, desc }) => (
 
   </div>
 
-)
+);
 
-export default Problem
+export default Problem;

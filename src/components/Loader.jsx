@@ -1,6 +1,12 @@
-const Loader = () => (
+import { useTranslation } from "react-i18next";
 
-  <div className="
+const Loader = () => {
+
+  const { t } = useTranslation();
+
+  return (
+
+    <div className="
     fixed inset-0
     bg-black/40
     backdrop-blur-sm
@@ -8,9 +14,9 @@ const Loader = () => (
     z-50
   ">
 
-    <div className="bg-white p-8 rounded-xl shadow-lg flex flex-col items-center">
+      <div className="bg-white p-8 rounded-xl shadow-lg flex flex-col items-center">
 
-      <div className="
+        <div className="
         animate-spin
         rounded-full
         h-12 w-12
@@ -18,14 +24,16 @@ const Loader = () => (
         border-indigo-600
       "/>
 
-      <p className="mt-4 text-sm text-gray-600">
-        Analyzing contract...
-      </p>
+        <p className="mt-4 text-sm text-gray-600">
+          {t("loader.analyzing")}
+        </p>
+
+      </div>
 
     </div>
 
-  </div>
+  );
 
-)
+};
 
 export default Loader

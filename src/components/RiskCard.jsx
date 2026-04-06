@@ -1,4 +1,8 @@
-const RiskCard = ({ clause }) => {
+import { useTranslation } from "react-i18next";
+
+const RiskCard = ({ score, clause }) => {
+
+  const { t } = useTranslation();
 
   const colorMap = {
 
@@ -7,6 +11,24 @@ const RiskCard = ({ clause }) => {
     LOW: "bg-green-500/20 text-green-300",
 
   };
+
+  if (score != null && score !== undefined) {
+
+    return (
+
+      <div className="bg-slate-900 p-5 rounded-xl mb-4 border border-white/10">
+
+        <p className="text-sm text-gray-400 mb-1">{t("analysis.riskScore")}</p>
+
+        <p className="text-3xl font-bold text-indigo-300">{score}/10</p>
+
+      </div>
+
+    );
+
+  }
+
+  if (!clause) return null;
 
   return (
 
@@ -24,7 +46,7 @@ const RiskCard = ({ clause }) => {
           className={`px-2 py-1 text-sm rounded ${colorMap[clause.risk_level]}`}
         >
 
-          {clause.risk_level}
+          {t(`riskLevel.${clause.risk_level}`, { defaultValue: clause.risk_level })}
 
         </span>
 
@@ -44,7 +66,7 @@ const RiskCard = ({ clause }) => {
 
       <p className="text-indigo-300 text-sm">
 
-        Suggestion:
+        {t("riskCard.suggestion")}
         {" "}
         {clause.suggestion}
 
@@ -53,6 +75,7 @@ const RiskCard = ({ clause }) => {
     </div>
 
   );
+
 };
 
 export default RiskCard;

@@ -1,8 +1,20 @@
-import { useState } from "react"
+import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const FAQ = () => {
 
-  const [open, setOpen] = useState(null)
+  const { t } = useTranslation();
+
+  const [open, setOpen] = useState(null);
+
+  const faqs = useMemo(() => ([
+    { q: t("faq.items.q1.q"), a: t("faq.items.q1.a") },
+    { q: t("faq.items.q2.q"), a: t("faq.items.q2.a") },
+    { q: t("faq.items.q3.q"), a: t("faq.items.q3.a") },
+    { q: t("faq.items.q4.q"), a: t("faq.items.q4.a") },
+    { q: t("faq.items.q5.q"), a: t("faq.items.q5.a") },
+    { q: t("faq.items.q6.q"), a: t("faq.items.q6.a") },
+  ]), [t]);
 
   return (
 
@@ -21,13 +33,13 @@ const FAQ = () => {
             font-medium
           ">
 
-            FAQ
+            {t("faq.badge")}
 
           </span>
 
           <h2 className="text-4xl font-bold text-gray-900 mt-4">
 
-            Frequently Asked Questions
+            {t("faq.title")}
 
           </h2>
 
@@ -38,7 +50,7 @@ const FAQ = () => {
           {faqs.map((item, index) => (
 
             <div
-              key={index}
+              key={item.q}
               className="
                 bg-white
                 border
@@ -48,6 +60,7 @@ const FAQ = () => {
             >
 
               <button
+                type="button"
                 onClick={() => setOpen(open === index ? null : index)}
                 className="
                   w-full
@@ -95,42 +108,8 @@ const FAQ = () => {
 
     </section>
 
-  )
+  );
 
-}
+};
 
-const faqs = [
-
-  {
-    q: "Is my contract data secure?",
-    a: "Yes. Contracts are encrypted with AES-256 and stored securely in isolated cloud infrastructure."
-  },
-
-  {
-    q: "What file formats are supported?",
-    a: "We support PDF and DOCX formats."
-  },
-
-  {
-    q: "Is it free to use?",
-    a: "Yes. Core features are completely free."
-  },
-
-  {
-    q: "Can it replace a lawyer?",
-    a: "No. It helps you understand contracts better but does not replace professional legal advice."
-  },
-
-  {
-    q: "Does it work for all contract types?",
-    a: "Yes. Works for employment, freelance, NDA, SaaS, vendor agreements and more."
-  },
-
-  {
-    q: "How accurate is the AI analysis?",
-    a: "AI provides highly accurate insights but we recommend reviewing critical agreements carefully."
-  }
-
-]
-
-export default FAQ
+export default FAQ;

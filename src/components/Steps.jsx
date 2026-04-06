@@ -1,8 +1,14 @@
-const Steps = () => (
+import { useTranslation } from "react-i18next";
 
-  <section
-    id="steps"
-    className="
+const Steps = () => {
+
+  const { t } = useTranslation();
+
+  return (
+
+    <section
+      id="steps"
+      className="
       py-24
       bg-gradient-to-r
       from-[#0b1026]
@@ -10,25 +16,25 @@ const Steps = () => (
       text-white
       relative
     "
-  >
+    >
 
-    <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
 
-      <h2 className="
+        <h2 className="
         text-4xl
         font-bold
         text-center
         mb-16
       ">
 
-        Three Steps to Contract Clarity
+          {t("steps.title")}
 
-      </h2>
+        </h2>
 
 
-      {/* connecting line */}
+        {/* connecting line */}
 
-      <div className="
+        <div className="
         hidden md:block
         absolute
         left-1/2
@@ -43,38 +49,40 @@ const Steps = () => (
       "/>
 
 
-      <div className="
+        <div className="
         grid
         md:grid-cols-3
         gap-10
         relative
       ">
 
-        <Step
-          icon="📄"
-          title="Upload Contract"
-          desc="Upload PDF or DOCX securely. Your contract stays private."
-        />
+          <Step
+            icon="📄"
+            title={t("steps.s1.title")}
+            desc={t("steps.s1.desc")}
+          />
 
-        <Step
-          icon="🤖"
-          title="AI Analysis"
-          desc="AI scans clauses, detects risks and simplifies legal language."
-        />
+          <Step
+            icon="🤖"
+            title={t("steps.s2.title")}
+            desc={t("steps.s2.desc")}
+          />
 
-        <Step
-          icon="📊"
-          title="Get Insights"
-          desc="Receive risk score, explanations and negotiation suggestions."
-        />
+          <Step
+            icon="📊"
+            title={t("steps.s3.title")}
+            desc={t("steps.s3.desc")}
+          />
+
+        </div>
 
       </div>
 
-    </div>
+    </section>
 
-  </section>
+  );
 
-)
+};
 
 
 
@@ -137,6 +145,6 @@ const Step = ({ icon, title, desc }) => (
 
   </div>
 
-)
+);
 
-export default Steps
+export default Steps;

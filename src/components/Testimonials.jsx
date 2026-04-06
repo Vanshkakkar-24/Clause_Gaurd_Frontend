@@ -1,67 +1,63 @@
-const Testimonials = () => (
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
-  <section className="py-28 bg-white">
+const Testimonials = () => {
 
-    <div className="max-w-7xl mx-auto px-6">
+  const { t } = useTranslation();
 
-      <h2 className="text-4xl font-bold text-center mb-14 text-gray-700">
+  const testimonials = useMemo(() => ([
+    { name: t("testimonials.t1.name"), text: t("testimonials.t1.text") },
+    { name: t("testimonials.t2.name"), text: t("testimonials.t2.text") },
+    { name: t("testimonials.t3.name"), text: t("testimonials.t3.text") },
+  ]), [t]);
 
-        Trusted by Students, Freelancers & Businesses
+  return (
 
-      </h2>
+    <section className="py-28 bg-white">
 
-      <div className="grid md:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto px-6">
 
-        {testimonials.map(t => (
+        <h2 className="text-4xl font-bold text-center mb-14 text-gray-700">
 
-          <div
-            key={t.name}
-            className="border p-6 rounded-xl"
-          >
+          {t("testimonials.title")}
 
-            ⭐⭐⭐⭐⭐
+        </h2>
 
-            <p className="text-gray-600 text-sm mt-3 ">
+        <div className="grid md:grid-cols-3 gap-8">
 
-              {t.text}
+          {testimonials.map((item) => (
 
-            </p>
+            <div
+              key={item.name}
+              className="border p-6 rounded-xl"
+            >
 
-            <div className="mt-4 font-medium text-gray-600">
+              ⭐⭐⭐⭐⭐
 
-              {t.name}
+              <p className="text-gray-600 text-sm mt-3 ">
+
+                {item.text}
+
+              </p>
+
+              <div className="mt-4 font-medium text-gray-600">
+
+                {item.name}
+
+              </div>
 
             </div>
 
-          </div>
+          ))}
 
-        ))}
+        </div>
 
       </div>
 
-    </div>
+    </section>
 
-  </section>
+  );
 
-)
+};
 
-const testimonials = [
-
-  {
-    name: "Sarah Chen",
-    text: "Helped me detect hidden clause"
-  },
-
-  {
-    name: "Marcus Williams",
-    text: "Saved hours of manual review"
-  },
-
-  {
-    name: "Priya Mehta",
-    text: "Perfect for students"
-  }
-
-]
-
-export default Testimonials
+export default Testimonials;

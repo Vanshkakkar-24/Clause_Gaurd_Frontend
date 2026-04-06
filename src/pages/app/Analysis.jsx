@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
 import ClauseCard from "../../components/ClauseCard"
 import RiskCard from "../../components/RiskCard"
 import Loader from "../../components/Loader"
 import Toast from "../../components/Toast"
 import api from "../../services/api"
+import i18n from "../../i18n/config"
 
 const Analysis = () => {
+
+  const { t } = useTranslation();
 
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -26,7 +30,7 @@ const Analysis = () => {
       }
       catch {
 
-        setError("Failed to load analysis")
+        setError(i18n.t("analysis.failed"))
 
       }
       finally {
@@ -50,7 +54,7 @@ const Analysis = () => {
     <div>
 
       <h1 className="text-2xl font-semibold mb-6">
-        Contract Risk Analysis
+        {t("analysis.title")}
       </h1>
 
       <RiskCard score={data.risk_score} />

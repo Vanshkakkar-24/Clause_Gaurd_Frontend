@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import FileUpload from "../../components/FileUpload"
 import Loader from "../../components/Loader"
 import Toast from "../../components/Toast"
@@ -6,6 +7,8 @@ import api from "../../services/api"
 import { useNavigate } from "react-router-dom"
 
 const Upload = () => {
+
+  const { t } = useTranslation();
 
   const navigate = useNavigate()
 
@@ -18,7 +21,7 @@ const Upload = () => {
   const handleUpload = (selectedFile) => {
 
     setFile(selectedFile)
-    setSuccess("File ready to upload")
+    setSuccess(t("upload.fileReady"))
     setError("")
     setResponse(null)
 
@@ -28,7 +31,7 @@ const Upload = () => {
 
     if (!file) {
 
-      setError("Upload a file first")
+      setError(t("upload.noFile"))
       return
 
     }
@@ -46,12 +49,12 @@ const Upload = () => {
 
       setResponse(res.data)
 
-      setSuccess("Contract analyzed successfully")
+      setSuccess(t("upload.success"))
 
     }
     catch {
 
-      setError("Upload failed")
+      setError(t("upload.failed"))
 
     }
     finally {
@@ -75,6 +78,9 @@ const Upload = () => {
 
   }
 
+  const trRisk = (level) =>
+    t(`riskLevel.${level}`, { defaultValue: level });
+
 
   return (
 
@@ -89,14 +95,14 @@ const Upload = () => {
 
       <h1 className="text-3xl font-semibold mb-2">
 
-        Upload Your Contract
+        {t("upload.title")}
 
       </h1>
 
 
       <p className="text-gray-500 mb-6">
 
-        Upload a PDF or DOCX file. Max 10 MB.
+        {t("upload.subtitle")}
 
       </p>
 
@@ -108,6 +114,7 @@ const Upload = () => {
 
 
       <button
+        type="button"
         onClick={handleSubmit}
         disabled={!file || loading}
         className="
@@ -124,7 +131,7 @@ const Upload = () => {
         "
       >
 
-        Submit Contract
+        {t("upload.submit")}
 
       </button>
 
@@ -141,7 +148,7 @@ const Upload = () => {
         text-sm
       ">
 
-        ⚠ AI generated results may be inaccurate.
+        {t("upload.disclaimer")}
 
       </div>
 
@@ -156,7 +163,7 @@ const Upload = () => {
 
             <h2 className="text-xl font-semibold">
 
-              Analysis Result
+              {t("upload.resultTitle")}
 
             </h2>
 
@@ -180,7 +187,7 @@ const Upload = () => {
 
                   <p className="text-sm text-gray-500">
 
-                    Contract Type
+                    {t("upload.contractType")}
 
                   </p>
 
@@ -197,7 +204,7 @@ const Upload = () => {
 
                   <p className="text-sm text-gray-500">
 
-                    Overall Risk
+                    {t("upload.overallRisk")}
 
                   </p>
 
@@ -290,7 +297,7 @@ const Upload = () => {
 
                       <span className="text-xs font-medium">
 
-                        {clause.risk_level}
+                        {trRisk(clause.risk_level)}
 
                       </span>
 
@@ -306,7 +313,7 @@ const Upload = () => {
 
                     <div className="mt-3 text-sm">
 
-                      <b>Suggestion:</b>
+                      <b>{t("upload.suggestion")}</b>
 
                       <span className="ml-1">
 
@@ -343,10 +350,11 @@ const Upload = () => {
 ">
 
               <p className="text-gray-700 font-medium">
-                Want a negotiation email?
+                {t("upload.negotiateCta")}
               </p>
 
               <button
+                type="button"
                 onClick={() =>
                   navigate("/app/negotiate", {
                     state: {
@@ -364,7 +372,7 @@ const Upload = () => {
     hover:bg-indigo-700
   "
               >
-                Generate negotiation email
+                {t("upload.negotiateBtn")}
               </button>
 
             </div>

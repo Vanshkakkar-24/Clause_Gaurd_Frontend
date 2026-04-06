@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 import Toast from "./Toast"
 import { useState } from "react"
 
 const Hero = () => {
+
+  const { t } = useTranslation();
 
   const navigate = useNavigate()
 
@@ -14,7 +17,7 @@ const Hero = () => {
 
     if (!token) {
 
-      setToast("Please login first")
+      setToast(t("hero.loginFirst"))
 
       return
 
@@ -34,35 +37,35 @@ const Hero = () => {
 
           <div className="inline-block px-4 py-1 mb-6 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">
 
-            AI-Powered Contract Intelligence
+            {t("hero.badge")}
 
           </div>
 
           <h1 className="text-5xl font-bold leading-tight mb-6">
 
-            Understand Any Contract
-            <span className="text-indigo-400"> in Minutes</span>
+            {t("hero.titleLine1")}
+            <span className="text-indigo-400">{t("hero.titleHighlight")}</span>
             <br />
 
-            Without a Lawyer
+            {t("hero.titleLine2")}
 
           </h1>
 
           <p className="text-gray-300 mb-8">
 
-            Upload your contract. Our AI highlights risks,
-            simplifies legal jargon, and explains everything clearly.
+            {t("hero.subtitle")}
 
           </p>
 
-          <div className="flex gap-4">
+          <div className="flex gap-4 flex-wrap">
 
             <button
+              type="button"
               onClick={handleClick}
               className="bg-indigo-500 hover:bg-indigo-600 px-6 py-3 rounded-xl font-medium"
             >
 
-              Analyze My Contract
+              {t("hero.analyze")}
 
             </button>
 
@@ -71,19 +74,19 @@ const Hero = () => {
               className="border border-gray-500 px-6 py-3 rounded-xl"
             >
 
-              See How It Works
+              {t("hero.howItWorks")}
 
             </a>
 
           </div>
 
-          <div className="flex gap-6 text-sm text-gray-400 mt-6">
+          <div className="flex gap-6 text-sm text-gray-400 mt-6 flex-wrap">
 
-            <span>✔ PDF & DOCX</span>
+            <span>{t("hero.badgePdf")}</span>
 
-            <span>✔ Instant Results</span>
+            <span>{t("hero.badgeInstant")}</span>
 
-            <span>✔ Free</span>
+            <span>{t("hero.badgeFree")}</span>
 
           </div>
 
@@ -95,19 +98,19 @@ const Hero = () => {
 
             <div className="bg-red-500/20 p-3 rounded">
 
-              HIGH risk clause detected
+              {t("hero.demoHigh")}
 
             </div>
 
             <div className="bg-yellow-500/20 p-3 rounded">
 
-              Medium risk clause detected
+              {t("hero.demoMedium")}
 
             </div>
 
             <div className="bg-green-500/20 p-3 rounded">
 
-              Low risk clause detected
+              {t("hero.demoLow")}
 
             </div>
 
@@ -115,7 +118,7 @@ const Hero = () => {
 
               <div className="text-xs text-gray-400">
 
-                Overall Risk Score
+                {t("hero.overallRisk")}
 
               </div>
 

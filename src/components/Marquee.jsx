@@ -1,17 +1,16 @@
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
+
 export default function Marquee() {
 
-  const items = [
+  const { t } = useTranslation();
 
-    'University Students',
-    'Freelancers',
-    'SaaS Founders',
-    'Upwork Professionals',
-    'Product Designers',
-    'Small Businesses',
-    'Startup Teams',
-    'Remote Workers',
+  const items = useMemo(
+    () => t("marquee.items", { returnObjects: true }),
+    [t],
+  );
 
-  ]
+  const list = Array.isArray(items) ? items : [];
 
   return (
 
@@ -32,10 +31,10 @@ export default function Marquee() {
         "
       >
 
-        {[...items, ...items].map((item, i) => (
+        {[...list, ...list].map((item, i) => (
 
           <span
-            key={i}
+            key={`${item}-${i}`}
             className="
               inline-flex
               items-center
@@ -70,6 +69,6 @@ export default function Marquee() {
 
     </div>
 
-  )
+  );
 
 }

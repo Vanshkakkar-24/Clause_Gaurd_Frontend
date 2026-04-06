@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import FileUpload from "../../components/FileUpload"
 import Loader from "../../components/Loader"
 import Toast from "../../components/Toast"
@@ -6,6 +7,8 @@ import ResultCard from "../../components/ResultCard"
 import api from "../../services/api"
 
 const Compare = () => {
+
+  const { t } = useTranslation();
 
   const [file1, setFile1] = useState(null)
   const [file2, setFile2] = useState(null)
@@ -34,7 +37,7 @@ const Compare = () => {
     }
     catch {
 
-      setError("Comparison failed")
+      setError(t("compare.failed"))
 
     }
     finally {
@@ -51,31 +54,32 @@ const Compare = () => {
 
       <h1 className="text-3xl font-semibold text-gray-900 mb-2">
 
-        Compare Contracts
+        {t("compare.title")}
 
       </h1>
 
       <p className="text-gray-500 mb-8">
 
-        Upload two versions of the contract to see differences and risk changes.
+        {t("compare.subtitle")}
 
       </p>
 
       <div className="grid md:grid-cols-2 gap-6">
 
         <FileUpload
-          label="Contract Version 1"
+          label={t("compare.v1")}
           onUpload={setFile1}
         />
 
         <FileUpload
-          label="Contract Version 2"
+          label={t("compare.v2")}
           onUpload={setFile2}
         />
 
       </div>
 
       <button
+        type="button"
         disabled={!file1 || !file2}
         onClick={compareContracts}
         className="
@@ -93,7 +97,7 @@ const Compare = () => {
         "
       >
 
-        Compare →
+        {t("compare.button")}
 
       </button>
 

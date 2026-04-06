@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { loginUser, googleAuth } from "../../services/api";
 import { GoogleLogin } from "@react-oauth/google";
 import Navbar from "../../components/Navbar";
 
 const Login = () => {
+
+  const { t } = useTranslation();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,7 +32,7 @@ const Login = () => {
 
     } catch {
 
-      alert("Invalid credentials");
+      alert(t("login.invalid"));
 
     }
 
@@ -53,7 +56,7 @@ const Login = () => {
 
     } catch {
 
-      alert("Google login failed");
+      alert(t("login.googleFail"));
 
     }
 
@@ -80,7 +83,7 @@ const Login = () => {
 
             <span className="text-lg font-semibold">
 
-              ContractIQ
+              {t("nav.brand")}
 
             </span>
 
@@ -88,15 +91,15 @@ const Login = () => {
 
           <h1 className="text-5xl font-bold leading-tight mb-6">
 
-            Smart Contracts.
+            {t("login.tagline1")}
             <br />
-            Smarter Decisions.
+            {t("login.tagline2")}
 
           </h1>
 
           <p className="text-slate-300 text-lg">
 
-            AI powered contract intelligence
+            {t("login.subtitle")}
 
           </p>
 
@@ -110,20 +113,20 @@ const Login = () => {
 
             <h2 className="text-2xl font-semibold mb-1">
 
-              Welcome Back
+              {t("login.welcome")}
 
             </h2>
 
             <p className="text-sm text-slate-500 mb-6">
 
-              Log in to continue
+              {t("login.continue")}
 
             </p>
 
 
             <label className="text-sm font-medium">
 
-              Email
+              {t("login.email")}
 
             </label>
 
@@ -136,7 +139,7 @@ const Login = () => {
 
             <label className="text-sm font-medium">
 
-              Password
+              {t("login.password")}
 
             </label>
 
@@ -149,18 +152,19 @@ const Login = () => {
 
 
             <button
+              type="button"
               onClick={handleLogin}
               className="w-full py-2.5 rounded-lg text-white font-medium bg-gradient-to-r from-indigo-500 to-indigo-600"
             >
 
-              Log In
+              {t("login.submit")}
 
             </button>
 
 
             <div className="text-center text-sm text-slate-400 my-4">
 
-              OR
+              {t("login.or")}
 
             </div>
 
@@ -169,7 +173,7 @@ const Login = () => {
 
               <GoogleLogin
                 onSuccess={handleGoogleSuccess}
-                onError={() => alert("Google login failed")}
+                onError={() => alert(t("login.googleFail"))}
               />
 
             </div>
@@ -177,14 +181,14 @@ const Login = () => {
 
             <p className="text-sm text-center mt-6">
 
-              No account?
+              {t("login.noAccount")}
 
               <Link
                 to="/register"
                 className="text-indigo-600 font-medium ml-1"
               >
 
-                Register
+                {t("login.register")}
 
               </Link>
 

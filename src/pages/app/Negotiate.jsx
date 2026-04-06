@@ -1,11 +1,14 @@
 import { useLocation } from "react-router-dom"
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import ReactMarkdown from "react-markdown"
 import Loader from "../../components/Loader"
 import Toast from "../../components/Toast"
 import api from "../../services/api"
 
 const Negotiate = () => {
+
+  const { t } = useTranslation();
 
   const location = useLocation()
 
@@ -17,7 +20,6 @@ const Negotiate = () => {
 
   const [email, setEmail] = useState(null)
   const [error, setError] = useState("")
-  const [success, setSuccess] = useState("")
   const [loading, setLoading] = useState(false)
 
   const riskColor = (level) => {
@@ -32,6 +34,9 @@ const Negotiate = () => {
 
   }
 
+  const trRisk = (level) =>
+    t(`riskLevel.${level}`, { defaultValue: level });
+
   const removeClause = (index) => {
 
     setClauses(
@@ -45,7 +50,7 @@ const Negotiate = () => {
 
     if (!clauses.length) {
 
-      setError("Select atleast one clause")
+      setError(t("negotiate.selectClause"))
       return
 
     }
@@ -85,7 +90,7 @@ const Negotiate = () => {
     }
     catch {
 
-      setError("Failed to generate email")
+      setError(t("negotiate.failed"))
 
     }
     finally {
@@ -107,7 +112,7 @@ ${email.email_body.replace(/\*\*/g, "")}`
 
     await navigator.clipboard.writeText(fullEmail)
 
-    alert("Email copied to clipboard")
+    alert(t("negotiate.copied"))
 
   }
 
@@ -117,11 +122,10 @@ ${email.email_body.replace(/\*\*/g, "")}`
     <div className="max-w-4xl mx-auto px-4 py-10">
 
       {error && <Toast message={error} type="error" />}
-      {success && <Toast message={success} type="success" />}
 
       <h1 className="text-3xl font-semibold mb-6">
 
-        Negotiation Email Generator
+        {t("negotiate.title")}
 
       </h1>
 
@@ -155,14 +159,15 @@ ${email.email_body.replace(/\*\*/g, "")}`
                   </h3>
 
                   <span className="text-xs font-medium opacity-80">
-                    <b>Risk Level: </b>
-                    {clause.risk_level}
+                    <b>{t("negotiate.riskLevel")} </b>
+                    {trRisk(clause.risk_level)}
                   </span>
 
                 </div>
 
 
                 <button
+                  type="button"
                   onClick={() => removeClause(i)}
                   className="
       ml-4
@@ -188,7 +193,7 @@ ${email.email_body.replace(/\*\*/g, "")}`
 
               <p className="text-sm mt-2">
 
-                <b>Suggestion: </b>
+                <b>{t("negotiate.suggestion")} </b>
 
                 {clause.suggestion}
 
@@ -204,6 +209,7 @@ ${email.email_body.replace(/\*\*/g, "")}`
 
 
       <button
+        type="button"
         onClick={generateEmail}
         className="
           px-6
@@ -216,7 +222,7 @@ ${email.email_body.replace(/\*\*/g, "")}`
         "
       >
 
-        Generate Email
+        {t("negotiate.generate")}
 
       </button>
 
@@ -243,7 +249,7 @@ ${email.email_body.replace(/\*\*/g, "")}`
 
             <p className="text-sm text-gray-500 mb-1">
 
-              Subject
+              {t("negotiate.subject")}
 
             </p>
 
@@ -263,6 +269,14 @@ ${email.email_body.replace(/\*\*/g, "")}`
               </ReactMarkdown>
 
             </div>
+
+            <button
+              type="button"
+              onClick={copyEmail}
+              className="mt-4 px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm hover:bg-indigo-700"
+            >
+              {t("negotiate.copyEmail")}
+            </button>
 
           </div>
 

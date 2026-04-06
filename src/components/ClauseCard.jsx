@@ -1,4 +1,8 @@
+import { useTranslation } from "react-i18next";
+
 const ClauseCard = ({ clause }) => {
+
+  const { t } = useTranslation();
 
   const riskColors = {
 
@@ -7,6 +11,8 @@ const ClauseCard = ({ clause }) => {
     high: "bg-red-100 text-red-700"
 
   };
+
+  const levelKey = clause.risk_level?.toLowerCase();
 
   return (
 
@@ -20,9 +26,9 @@ const ClauseCard = ({ clause }) => {
 
         </h3>
 
-        <span className={`px-3 py-1 rounded-full text-sm font-medium ${riskColors[clause.risk_level?.toLowerCase()]}`}>
+        <span className={`px-3 py-1 rounded-full text-sm font-medium ${riskColors[levelKey] || "bg-gray-100 text-gray-700"}`}>
 
-          {clause.risk_level}
+          {t(`riskLevel.${clause.risk_level}`, { defaultValue: clause.risk_level })}
 
         </span>
 
@@ -38,7 +44,7 @@ const ClauseCard = ({ clause }) => {
 
         <p className="text-sm mt-2 text-gray-500">
 
-          Risk Score: {clause.risk_score}
+          {t("clauseCard.riskScore")} {clause.risk_score}
 
         </p>
 

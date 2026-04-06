@@ -1,90 +1,74 @@
-const Features = () => (
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
-  <section id="features" className="py-28 bg-white text-gray-900">
+const Features = () => {
 
-    <div className="max-w-7xl mx-auto px-6">
+  const { t } = useTranslation();
 
-      <div className="text-center mb-14">
+  const features = useMemo(() => ([
+    { title: t("features.items.smartRisk.title"), desc: t("features.items.smartRisk.desc") },
+    { title: t("features.items.simplifier.title"), desc: t("features.items.simplifier.desc") },
+    { title: t("features.items.compare.title"), desc: t("features.items.compare.desc") },
+    { title: t("features.items.negotiate.title"), desc: t("features.items.negotiate.desc") },
+    { title: t("features.items.chat.title"), desc: t("features.items.chat.desc") },
+    { title: t("features.items.multiLang.title"), desc: t("features.items.multiLang.desc") },
+  ]), [t]);
 
-        <span className="text-indigo-500 text-sm">
+  return (
 
-          Features
+    <section id="features" className="py-28 bg-white text-gray-900">
 
-        </span>
+      <div className="max-w-7xl mx-auto px-6">
 
-        <h2 className="text-4xl font-bold mt-3">
+        <div className="text-center mb-14">
 
-          Everything You Need to Protect Yourself
+          <span className="text-indigo-500 text-sm">
 
-        </h2>
+            {t("features.label")}
 
-      </div>
+          </span>
 
-      <div className="grid md:grid-cols-3 gap-8">
+          <h2 className="text-4xl font-bold mt-3">
 
-        {features.map(f => (
+            {t("features.title")}
 
-          <div
-            key={f.title}
-            className="border p-6 rounded-xl hover:shadow-lg"
-          >
+          </h2>
 
-            <div className="text-indigo-500 font-semibold mb-2">
+        </div>
 
-              {f.title}
+        <div className="grid md:grid-cols-3 gap-8">
+
+          {features.map((f) => (
+
+            <div
+              key={f.title}
+              className="border p-6 rounded-xl hover:shadow-lg"
+            >
+
+              <div className="text-indigo-500 font-semibold mb-2">
+
+                {f.title}
+
+              </div>
+
+              <p className="text-gray-500 text-sm">
+
+                {f.desc}
+
+              </p>
 
             </div>
 
-            <p className="text-gray-500 text-sm">
+          ))}
 
-              {f.desc}
-
-            </p>
-
-          </div>
-
-        ))}
+        </div>
 
       </div>
 
-    </div>
+    </section>
 
-  </section>
+  );
 
-)
+};
 
-const features = [
-
-  {
-    title: "Smart Risk Analyzer",
-    desc: "Detect risky clauses instantly"
-  },
-
-  {
-    title: "Contract Simplifier",
-    desc: "Convert legal jargon to plain English"
-  },
-
-  {
-    title: "Contract Comparison",
-    desc: "Compare versions side-by-side"
-  },
-
-  {
-    title: "Negotiation Assistant",
-    desc: "AI suggested clause improvements"
-  },
-
-  {
-    title: "AI Contract Chat",
-    desc: "Ask questions about contract"
-  },
-
-  {
-    title: "Multi-language Support",
-    desc: "Supports 30+ languages"
-  }
-
-]
-
-export default Features
+export default Features;

@@ -1,0 +1,237 @@
+{
+  "language": {
+    "en": "English",
+    "hi": "हिंदी",
+    "label": "Language"
+  },
+  "nav": {
+    "brand": "Clause Gaurd",
+    "upload": "Upload",
+    "compare": "Compare",
+    "chat": "Chat",
+    "history": "History",
+    "settings": "Settings",
+    "logout": "Logout",
+    "login": "Login",
+    "getStarted": "Get Started"
+  },
+  "footer": {
+    "tagline": "AI-powered contract intelligence that helps you understand risks, simplify clauses and negotiate better agreements.",
+    "product": "Product",
+    "company": "Company",
+    "getStarted": "Get Started",
+    "items": {
+      "analysis": "Contract Analysis",
+      "risk": "Risk Detection",
+      "negotiation": "Negotiation Email",
+      "simplify": "Clause Simplification",
+      "about": "About",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "contact": "Contact"
+    },
+    "ctaText": "Upload your contract and get AI insights in seconds.",
+    "ctaButton": "Try Clause Gaurd",
+    "copyright": "© 2026 Clause Gaurd • AI-powered contract intelligence"
+  },
+  "hero": {
+    "badge": "AI-Powered Contract Intelligence",
+    "titleLine1": "Understand Any Contract",
+    "titleHighlight": " in Minutes",
+    "titleLine2": "Without a Lawyer",
+    "subtitle": "Upload your contract. Our AI highlights risks, simplifies legal jargon, and explains everything clearly.",
+    "analyze": "Analyze My Contract",
+    "howItWorks": "See How It Works",
+    "badgePdf": "✔ PDF & DOCX",
+    "badgeInstant": "✔ Instant Results",
+    "badgeFree": "✔ Free",
+    "demoHigh": "HIGH risk clause detected",
+    "demoMedium": "Medium risk clause detected",
+    "demoLow": "Low risk clause detected",
+    "overallRisk": "Overall Risk Score",
+    "loginFirst": "Please login first"
+  },
+  "problem": {
+    "badge": "The Problem",
+    "title": "You Shouldn't Need a Lawyer to Understand What You're Signing",
+    "subtitle": "Contracts are written by lawyers, for lawyers. Clause Gaurd bridges that gap for everyone else.",
+    "cards": {
+      "c1": { "title": "Complex Legal Language", "desc": "Dense legalese makes it difficult to understand what you're agreeing to." },
+      "c2": { "title": "Hidden Risky Clauses", "desc": "Auto-renewals, IP ownership traps, and hidden penalties buried in fine print." },
+      "c3": { "title": "Costly Legal Consultations", "desc": "Hiring lawyers for every contract is expensive and time consuming." }
+    }
+  },
+  "features": {
+    "label": "Features",
+    "title": "Everything You Need to Protect Yourself",
+    "items": {
+      "smartRisk": { "title": "Smart Risk Analyzer", "desc": "Detect risky clauses instantly" },
+      "simplifier": { "title": "Contract Simplifier", "desc": "Convert legal jargon to plain English" },
+      "compare": { "title": "Contract Comparison", "desc": "Compare versions side-by-side" },
+      "negotiate": { "title": "Negotiation Assistant", "desc": "AI suggested clause improvements" },
+      "chat": { "title": "AI Contract Chat", "desc": "Ask questions about contract" },
+      "multiLang": { "title": "Multi-language Support", "desc": "Supports 30+ languages" }
+    }
+  },
+  "steps": {
+    "title": "Three Steps to Contract Clarity",
+    "s1": { "title": "Upload Contract", "desc": "Upload PDF or DOCX securely. Your contract stays private." },
+    "s2": { "title": "AI Analysis", "desc": "AI scans clauses, detects risks and simplifies legal language." },
+    "s3": { "title": "Get Insights", "desc": "Receive risk score, explanations and negotiation suggestions." }
+  },
+  "testimonials": {
+    "title": "Trusted by Students, Freelancers & Businesses",
+    "t1": { "name": "Sarah Chen", "text": "Helped me detect hidden clause" },
+    "t2": { "name": "Marcus Williams", "text": "Saved hours of manual review" },
+    "t3": { "name": "Priya Mehta", "text": "Perfect for students" }
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Frequently Asked Questions",
+    "items": {
+      "q1": { "q": "Is my contract data secure?", "a": "Yes. Contracts are encrypted with AES-256 and stored securely in isolated cloud infrastructure." },
+      "q2": { "q": "What file formats are supported?", "a": "We support PDF and DOCX formats." },
+      "q3": { "q": "Is it free to use?", "a": "Yes. Core features are completely free." },
+      "q4": { "q": "Can it replace a lawyer?", "a": "No. It helps you understand contracts better but does not replace professional legal advice." },
+      "q5": { "q": "Does it work for all contract types?", "a": "Yes. Works for employment, freelance, NDA, SaaS, vendor agreements and more." },
+      "q6": { "q": "How accurate is the AI analysis?", "a": "AI provides highly accurate insights but we recommend reviewing critical agreements carefully." }
+    }
+  },
+  "marquee": {
+    "items": ["University Students", "Freelancers", "SaaS Founders", "Upwork Professionals", "Product Designers", "Small Businesses", "Startup Teams", "Remote Workers"]
+  },
+  "login": {
+    "tagline1": "Smart Contracts.",
+    "tagline2": "Smarter Decisions.",
+    "subtitle": "AI powered contract intelligence",
+    "welcome": "Welcome Back",
+    "continue": "Log in to continue",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Log In",
+    "or": "OR",
+    "googleFail": "Google login failed",
+    "invalid": "Invalid credentials",
+    "noAccount": "No account?",
+    "register": "Register"
+  },
+  "register": {
+    "tagline1": "Start Protecting",
+    "tagline2": "Yourself Today.",
+    "subtitle": "Create a free account and analyze your first contract in under 60 seconds.",
+    "title": "Create Your Free Account",
+    "join": "Join 12,000+ professionals",
+    "fullName": "Full Name",
+    "mobile": "Mobile",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "placeholders": {
+      "name": "John Doe",
+      "phone": "9876543210",
+      "email": "you@example.com",
+      "password": "Create password",
+      "confirm": "Repeat password"
+    },
+    "agree": "I agree to Terms & Privacy Policy",
+    "submit": "Create Account",
+    "orContinue": "— or continue with —",
+    "googleFail": "Google signup failed",
+    "alerts": {
+      "terms": "Please accept Terms",
+      "passwordMatch": "Passwords do not match",
+      "failed": "Registration failed"
+    },
+    "hasAccount": "Already have account?",
+    "login": "Login"
+  },
+  "upload": {
+    "title": "Upload Your Contract",
+    "subtitle": "Upload a PDF or DOCX file. Max 10 MB.",
+    "submit": "Submit Contract",
+    "disclaimer": "⚠ AI generated results may be inaccurate.",
+    "resultTitle": "Analysis Result",
+    "contractType": "Contract Type",
+    "overallRisk": "Overall Risk",
+    "suggestion": "Suggestion:",
+    "negotiateCta": "Want a negotiation email?",
+    "negotiateBtn": "Generate negotiation email",
+    "fileReady": "File ready to upload",
+    "success": "Contract analyzed successfully",
+    "noFile": "Upload a file first",
+    "failed": "Upload failed"
+  },
+  "analysis": {
+    "title": "Contract Risk Analysis",
+    "failed": "Failed to load analysis",
+    "riskScore": "Overall risk score"
+  },
+  "compare": {
+    "title": "Compare Contracts",
+    "subtitle": "Upload two versions of the contract to see differences and risk changes.",
+    "v1": "Contract Version 1",
+    "v2": "Contract Version 2",
+    "button": "Compare →",
+    "failed": "Comparison failed"
+  },
+  "chat": {
+    "placeholder": "Ask about your contract...",
+    "send": "Send"
+  },
+  "negotiate": {
+    "title": "Negotiation Email Generator",
+    "riskLevel": "Risk Level:",
+    "suggestion": "Suggestion:",
+    "generate": "Generate Email",
+    "subject": "Subject",
+    "selectClause": "Select atleast one clause",
+    "failed": "Failed to generate email",
+    "copyEmail": "Copy to clipboard",
+    "copied": "Email copied to clipboard"
+  },
+  "simplifier": {
+    "title": "Simplify Legal Text",
+    "placeholder": "Paste legal clause...",
+    "simplify": "Simplify",
+    "failed": "Failed to simplify"
+  },
+  "history": {
+    "title": "Analysis History"
+  },
+  "settings": {
+    "title": "Settings",
+    "comingSoon": "Settings page coming soon."
+  },
+  "fileUpload": {
+    "defaultLabel": "Choose file",
+    "hint": "Drag & drop or click to browse"
+  },
+  "clauseCard": {
+    "riskScore": "Risk Score:"
+  },
+  "riskCard": {
+    "suggestion": "Suggestion:"
+  },
+  "resultCard": {
+    "c1Risk": "Contract 1 Risk",
+    "c2Risk": "Contract 2 Risk",
+    "score": "Score:",
+    "summary": "Summary",
+    "better": "Better Contract:",
+    "suggestion": "Suggestion:",
+    "missing1": "Missing in Contract 1",
+    "missing2": "Missing in Contract 2",
+    "recommendation": "Recommendation"
+  },
+  "loader": {
+    "analyzing": "Analyzing contract..."
+  },
+  "riskLevel": {
+    "High": "High",
+    "Medium": "Medium",
+    "Low": "Low",
+    "HIGH": "HIGH",
+    "MEDIUM": "MEDIUM",
+    "LOW": "LOW"
+  }
+}

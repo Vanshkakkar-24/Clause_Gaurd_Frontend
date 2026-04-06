@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { registerUser } from "../../services/api";
 import Navbar from "../../components/Navbar";
 import { GoogleLogin } from "@react-oauth/google";
 import { googleAuth } from "../../services/api";
 
 const Register = () => {
+
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -36,7 +39,7 @@ const Register = () => {
     }
     catch {
 
-      alert("Google signup failed");
+      alert(t("register.googleFail"));
 
     }
 
@@ -56,12 +59,12 @@ const Register = () => {
   const handleRegister = async () => {
 
     if (!form.agree) {
-      alert("Please accept Terms");
+      alert(t("register.alerts.terms"));
       return;
     }
 
     if (form.password !== form.confirm_password) {
-      alert("Passwords do not match");
+      alert(t("register.alerts.passwordMatch"));
       return;
     }
 
@@ -79,7 +82,7 @@ const Register = () => {
 
     }
     catch {
-      alert("Registration failed");
+      alert(t("register.alerts.failed"));
     }
 
   };
@@ -103,22 +106,22 @@ const Register = () => {
             </div>
 
             <span className="text-lg font-semibold">
-              ContractIQ
+              {t("nav.brand")}
             </span>
 
           </div>
 
           <h1 className="text-5xl font-bold leading-tight mb-6">
 
-            Start Protecting
+            {t("register.tagline1")}
             <br />
-            Yourself Today.
+            {t("register.tagline2")}
 
           </h1>
 
           <p className="text-slate-300 text-lg">
 
-            Create a free account and analyze your first contract in under 60 seconds.
+            {t("register.subtitle")}
 
           </p>
 
@@ -134,13 +137,13 @@ const Register = () => {
 
             <h2 className="text-2xl font-semibold mb-1">
 
-              Create Your Free Account
+              {t("register.title")}
 
             </h2>
 
             <p className="text-sm text-slate-500 mb-6">
 
-              Join 12,000+ professionals
+              {t("register.join")}
 
             </p>
 
@@ -148,12 +151,12 @@ const Register = () => {
             {/* Full Name */}
 
             <label className="text-sm font-medium">
-              Full Name
+              {t("register.fullName")}
             </label>
 
             <input
               name="full_name"
-              placeholder="John Doe"
+              placeholder={t("register.placeholders.name")}
               onChange={handleChange}
               className="w-full border mt-1 mb-4 px-4 py-2 rounded-lg focus:ring-2 focus:ring-indigo-500"
             />
@@ -162,12 +165,12 @@ const Register = () => {
             {/* Phone */}
 
             <label className="text-sm font-medium">
-              Mobile
+              {t("register.mobile")}
             </label>
 
             <input
               name="phone"
-              placeholder="9876543210"
+              placeholder={t("register.placeholders.phone")}
               onChange={handleChange}
               className="w-full border mt-1 mb-4 px-4 py-2 rounded-lg focus:ring-2 focus:ring-indigo-500"
             />
@@ -176,12 +179,12 @@ const Register = () => {
             {/* Email */}
 
             <label className="text-sm font-medium">
-              Email
+              {t("register.email")}
             </label>
 
             <input
               name="email"
-              placeholder="you@example.com"
+              placeholder={t("register.placeholders.email")}
               onChange={handleChange}
               className="w-full border mt-1 mb-4 px-4 py-2 rounded-lg focus:ring-2 focus:ring-indigo-500"
             />
@@ -190,13 +193,13 @@ const Register = () => {
             {/* Password */}
 
             <label className="text-sm font-medium">
-              Password
+              {t("register.password")}
             </label>
 
             <input
               type="password"
               name="password"
-              placeholder="Create password"
+              placeholder={t("register.placeholders.password")}
               onChange={handleChange}
               className="w-full border mt-1 mb-4 px-4 py-2 rounded-lg focus:ring-2 focus:ring-indigo-500"
             />
@@ -205,13 +208,13 @@ const Register = () => {
             {/* Confirm Password */}
 
             <label className="text-sm font-medium">
-              Confirm Password
+              {t("register.confirmPassword")}
             </label>
 
             <input
               type="password"
               name="confirm_password"
-              placeholder="Repeat password"
+              placeholder={t("register.placeholders.confirm")}
               onChange={handleChange}
               className="w-full border mt-1 mb-4 px-4 py-2 rounded-lg focus:ring-2 focus:ring-indigo-500"
             />
@@ -227,7 +230,7 @@ const Register = () => {
                 onChange={handleChange}
               />
 
-              I agree to Terms & Privacy Policy
+              {t("register.agree")}
 
             </label>
 
@@ -235,11 +238,12 @@ const Register = () => {
             {/* Submit */}
 
             <button
+              type="button"
               onClick={handleRegister}
               className="w-full py-2.5 rounded-lg text-white font-medium bg-gradient-to-r from-indigo-500 to-indigo-600 hover:opacity-90"
             >
 
-              Create Account
+              {t("register.submit")}
 
             </button>
 
@@ -248,7 +252,7 @@ const Register = () => {
 
             <div className="text-center text-sm text-slate-400 my-4">
 
-              — or continue with —
+              {t("register.orContinue")}
 
             </div>
 
@@ -259,7 +263,7 @@ const Register = () => {
 
               <GoogleLogin
                 onSuccess={handleGoogleSuccess}
-                onError={() => alert("Google signup failed")}
+                onError={() => alert(t("register.googleFail"))}
               />
 
             </div>
@@ -269,14 +273,14 @@ const Register = () => {
 
             <p className="text-sm text-center mt-6">
 
-              Already have account?
+              {t("register.hasAccount")}
 
               <Link
                 to="/login"
                 className="text-indigo-600 font-medium ml-1"
               >
 
-                Login
+                {t("register.login")}
 
               </Link>
 

@@ -1,22 +1,30 @@
+import { useTranslation } from "react-i18next";
 import Navbar from "../../components/Navbar";
 
-const History = () => (
+const History = () => {
 
-  <div className="bg-slate-950 min-h-screen text-white">
+  const { t } = useTranslation();
 
-    <Navbar />
+  return (
 
-    <div className="max-w-5xl mx-auto mt-12">
+    <div className="bg-slate-950 min-h-screen text-white">
 
-      <h1 className="text-3xl">
+      <Navbar />
 
-        Analysis History
+      <div className="max-w-5xl mx-auto mt-12">
 
-      </h1>
+        <h1 className="text-3xl">
+
+          {t("history.title")}
+
+        </h1>
+
+      </div>
 
     </div>
 
-  </div>
-);
+  );
+
+};
 
 export default History;

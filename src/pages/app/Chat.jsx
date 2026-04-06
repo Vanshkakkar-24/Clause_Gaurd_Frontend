@@ -1,9 +1,12 @@
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import ChatMessage from "../../components/ChatMessage"
 import Loader from "../../components/Loader"
 import api from "../../services/api"
 
 const Chat = () => {
+
+  const { t } = useTranslation();
 
   const [messages, setMessages] = useState([])
 
@@ -82,16 +85,17 @@ const Chat = () => {
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask about your contract..."
+          placeholder={t("chat.placeholder")}
           className="flex-1 border p-2 rounded-lg"
         />
 
         <button
+          type="button"
           onClick={sendMessage}
           className="px-4 bg-blue-600 text-white rounded-lg"
         >
 
-          Send
+          {t("chat.send")}
 
         </button>
 

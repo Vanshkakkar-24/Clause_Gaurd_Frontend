@@ -1,22 +1,22 @@
-const ChatMessage = ({ msg }) => (
+const ChatMessage = ({ role, content }) => (
 
   <div
     className={`mb-3 ${
-      msg.sender==="user"
-      ? "text-right"
-      : ""
+      role === "user"
+        ? "text-right"
+        : ""
     }`}
   >
 
     <div
       className={`inline-block px-4 py-2 rounded ${
-        msg.sender==="user"
-        ? "bg-indigo-500"
-        : "bg-slate-800"
+        role === "user"
+          ? "bg-indigo-500 text-white"
+          : "bg-slate-800 text-white"
       }`}
     >
 
-      {msg.text}
+      {content}
 
     </div>
 

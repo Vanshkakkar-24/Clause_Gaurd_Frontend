@@ -1,9 +1,14 @@
 import { useRef, useState } from "react"
+import { useTranslation } from "react-i18next"
 
 const FileUpload = ({ onUpload, label }) => {
 
+  const { t } = useTranslation();
+
   const inputRef = useRef()
   const [fileName, setFileName] = useState("")
+
+  const displayLabel = label ?? t("fileUpload.defaultLabel");
 
   const handleFile = (file) => {
 
@@ -58,11 +63,11 @@ const FileUpload = ({ onUpload, label }) => {
       />
 
       <p className="text-gray-700 font-medium">
-        {label}
+        {displayLabel}
       </p>
 
       <p className="text-sm text-gray-400 mt-1">
-        Drag & drop or click to browse
+        {t("fileUpload.hint")}
       </p>
 
       {fileName && (
