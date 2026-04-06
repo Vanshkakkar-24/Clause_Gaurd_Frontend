@@ -93,24 +93,26 @@ const Navbar = () => {
               <div className="flex items-center gap-2">
 
                 {/* language */}
-                <div className="hidden md:block">
+                {/* <div className="hidden md:block">
                   <LanguageSwitcher />
-                </div>
+                </div> */}
 
 
                 {/* desktop nav */}
 
                 <div className="hidden md:flex items-center gap-2">
 
+                  {navLink("/app/dashboard","Dashboard")}
+
+                  {navLink("/app/simplify", "Simplify")}
+
                   {navLink("/app/upload", t("nav.upload"))}
 
                   {navLink("/app/compare", t("nav.compare"))}
 
-                  {navLink("/app/simplify", "Simplify")}
+                  {/* {navLink("/app/chat", t("nav.chat"))} */}
 
-                  {navLink("/app/chat", t("nav.chat"))}
-
-                  {navLink("/app/history", t("nav.history"))}
+                  {/* {navLink("/app/history", t("nav.history"))} */}
 
                   <button
                     onClick={logout}

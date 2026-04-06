@@ -16,6 +16,8 @@ import Negotiate from "./pages/app/Negotiate"
 import Simplifier from "./pages/app/Simplifier"
 import History from "./pages/app/History"
 import Settings from "./pages/app/Settings"
+import Dashboard from "./pages/app/Dashboard"
+import ActivityDetails from "./pages/app/ActivityDetails"
 
 function App() {
 
@@ -57,6 +59,10 @@ function App() {
               <Route path="/app/history" element={<History />} />
 
               <Route path="/app/settings" element={<Settings />} />
+
+              <Route path="/app/dashboard" element={<Dashboard />} />
+
+              <Route path="/app/activity/:id" element={<ActivityDetails />} />
 
             </Route>
 

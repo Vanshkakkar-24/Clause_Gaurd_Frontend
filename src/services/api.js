@@ -50,11 +50,13 @@ export const googleAuth = (token) =>
 
 export const analyzeContract = (file) => {
   const formData = new FormData();
+  const token = localStorage.getItem("token");
   formData.append("file", file);
 
   return API.post("/analyze/file", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
+      "Authorization": `Bearer ${token}`
     },
   });
 };
@@ -63,6 +65,7 @@ export const analyzeContract = (file) => {
 
 export const compareContracts = (file1, file2) => {
   const formData = new FormData();
+  const token = localStorage.getItem("token");
 
   formData.append("file1", file1);
   formData.append("file2", file2);
@@ -70,9 +73,13 @@ export const compareContracts = (file1, file2) => {
   return API.post("/compare/files", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
+      "Authorization": `Bearer ${token}`
     },
   });
 };
+
+export const getActivities = () =>
+  API.get("/auth/activities")
 
 // EMAIL
 

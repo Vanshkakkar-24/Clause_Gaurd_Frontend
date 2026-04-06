@@ -20,6 +20,7 @@ const Register = () => {
     confirm_password: "",
     agree: false
   });
+  const [accountType, setAccountType] = useState("individual")
 
   const handleGoogleSuccess = async (credentialResponse) => {
 
@@ -71,12 +72,27 @@ const Register = () => {
     try {
 
       await registerUser({
+
+        account_type: accountType,
+
         full_name: form.full_name,
+
+        organization_name: form.organization_name || "",
+
         phone: form.phone,
+
         email: form.email,
+
         password: form.password,
+
         confirm_password: form.confirm_password
-      });
+
+      })
+
+      localStorage.setItem(
+        "token",
+        res.data.access_token
+      );
 
       navigate("/");
 
@@ -188,6 +204,29 @@ const Register = () => {
               onChange={handleChange}
               className="w-full border mt-1 mb-4 px-4 py-2 rounded-lg focus:ring-2 focus:ring-indigo-500"
             />
+
+            <label>Account Type</label>
+
+            <select
+              value={accountType}
+              onChange={(e) => setAccountType(e.target.value)}
+            >
+
+              <option value="individual">
+
+                Individual
+
+              </option>
+
+              <option value="organization">
+
+                Organization
+
+              </option>
+
+            </select>
+
+            <br /><br />
 
 
             {/* Password */}
