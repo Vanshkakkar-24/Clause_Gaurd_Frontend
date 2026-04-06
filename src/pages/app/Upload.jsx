@@ -4,19 +4,37 @@ import FileUpload from "../../components/FileUpload"
 import Loader from "../../components/Loader"
 import Toast from "../../components/Toast"
 import api from "../../services/api"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
+import { useEffect } from "react"
 
 const Upload = () => {
 
   const { t } = useTranslation();
 
   const navigate = useNavigate()
+  const location = useLocation()
 
   const [file, setFile] = useState(null)
   const [loading, setLoading] = useState(false)
   const [response, setResponse] = useState(null)
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
+
+  const userType = localStorage.getItem("userType")
+
+  useEffect(() => {
+
+    const incomingFile = location.state?.file
+
+    if (incomingFile) {
+
+      setFile(incomingFile)
+
+      analyzeFile(incomingFile)
+
+    }
+
+  }, [])
 
   const handleUpload = (selectedFile) => {
 
@@ -27,14 +45,7 @@ const Upload = () => {
 
   }
 
-  const handleSubmit = async () => {
-
-    if (!file) {
-
-      setError(t("upload.noFile"))
-      return
-
-    }
+  const analyzeFile = async (selectedFile) => {
 
     try {
 
@@ -43,18 +54,18 @@ const Upload = () => {
       setSuccess("")
 
       const formData = new FormData()
-      formData.append("file", file)
+      formData.append("file", selectedFile)
 
       const res = await api.post("/analyze/file", formData)
 
       setResponse(res.data)
 
-      setSuccess(t("upload.success"))
+      setSuccess(t("upload.success") || "Analysis complete")
 
     }
     catch {
 
-      setError(t("upload.failed"))
+      setError(t("upload.failed") || "Analysis failed")
 
     }
     finally {
@@ -115,7 +126,7 @@ const Upload = () => {
 
       <button
         type="button"
-        onClick={handleSubmit}
+        onClick={() => analyzeFile(file)}
         disabled={!file || loading}
         className="
           mt-6 w-full
@@ -313,11 +324,11 @@ const Upload = () => {
 
                     <div className="mt-3 text-sm">
 
-                      <b>{t("upload.suggestion")}</b>
+                      <b>{t("upload.recommendation")}</b>
 
                       <span className="ml-1">
 
-                        {clause.suggestion}
+                        {clause.recommendation}
 
                       </span>
 
@@ -331,7 +342,7 @@ const Upload = () => {
 
             </div>
 
-            {/* NEGOTIATION CTA */}
+            {/* SMART CTA BASED ON USER TYPE */}
 
             <div className="
   mt-10
@@ -349,31 +360,79 @@ const Upload = () => {
   gap-4
 ">
 
-              <p className="text-gray-700 font-medium">
-                {t("upload.negotiateCta")}
-              </p>
+              {
 
-              <button
-                type="button"
-                onClick={() =>
-                  navigate("/app/negotiate", {
-                    state: {
-                      clauses: response.risky_clauses,
-                      contract_type: response.contract_overview.contract_type
-                    }
-                  })
-                }
-                className="
-    px-6 py-2
-    bg-indigo-600
-    text-white
-    rounded-lg
-    shadow
-    hover:bg-indigo-700
-  "
-              >
-                {t("upload.negotiateBtn")}
-              </button>
+                userType === "individual" && (
+
+                  <>
+                    <p className="text-gray-700 font-medium">
+                      Negotiate risky clauses with the other party
+                    </p>
+
+                    <button
+                      onClick={() =>
+                        navigate("/app/negotiate", {
+                          state: {
+                            clauses: response.risky_clauses,
+                            contract_type:
+                              response.contract_overview.contract_type
+                          }
+                        })
+                      }
+                      className="
+            px-6 py-2
+            bg-indigo-600
+            text-white
+            rounded-lg
+            shadow
+            hover:bg-indigo-700
+          "
+                    >
+                      Negotiate contract
+                    </button>
+                  </>
+
+                )
+
+              }
+
+
+              {
+
+                userType === "organization" && (
+
+                  <>
+                    <p className="text-gray-700 font-medium">
+                      Automatically redraft contract with safer clauses
+                    </p>
+
+                    <button
+                      onClick={() =>
+                        navigate("/app/redraft", {
+                          state: {
+                            file,
+                            clauses: response.risky_clauses,
+                            contract_type: response.contract_overview.contract_type,
+                            summary: response.summary
+                          }
+                        })
+                      }
+                      className="
+            px-6 py-2
+            bg-indigo-700
+            text-white
+            rounded-lg
+            shadow
+            hover:bg-indigo-800
+          "
+                    >
+                      Redraft contract
+                    </button>
+                  </>
+
+                )
+
+              }
 
             </div>
 

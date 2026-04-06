@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
+import { useNavigate } from "react-router-dom"
 
 import FileUpload from "../../components/FileUpload"
 import Loader from "../../components/Loader"
@@ -16,6 +17,8 @@ const Simplifier = () => {
   const [response, setResponse] = useState(null)
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
+
+  const navigate = useNavigate()
 
   const handleUpload = (selectedFile) => {
 
@@ -195,10 +198,65 @@ const Simplifier = () => {
 
                     </div>
 
+
                   </div>
+
+
 
                 ))
 
+
+
+              }
+
+              {
+                response && (
+                  <div className="mt-12 space-y-8">
+
+                    {/* NEW CTA */}
+                    <div className="
+        mt-10
+        p-6
+        border
+        rounded-xl
+        bg-gradient-to-r
+        from-indigo-50
+        to-white
+        flex
+        flex-col
+        md:flex-row
+        items-center
+        justify-between
+        gap-4
+      ">
+                      <p className="text-gray-700 font-medium">
+                        Want deeper risk analysis for this contract?
+                      </p>
+
+                      <button
+                        onClick={() =>
+                          navigate("/app/upload", {
+                            state: {
+                              file: file   // pass same uploaded file
+                            }
+                          })
+                        }
+                        className="
+            px-6 py-2
+            bg-indigo-600
+            text-white
+            rounded-lg
+            shadow
+            hover:bg-indigo-700
+          "
+                      >
+                        Analyze contract
+                      </button>
+
+                    </div>
+
+                  </div>
+                )
               }
 
             </div>

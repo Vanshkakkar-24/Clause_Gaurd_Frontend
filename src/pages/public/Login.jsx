@@ -28,6 +28,11 @@ const Login = () => {
         res.data.access_token
       );
 
+      localStorage.setItem(
+        "userType",
+        res.data.account_type
+      );
+
       navigate("/");
 
     } catch {
@@ -132,7 +137,7 @@ const Login = () => {
 
             <input
               value={email}
-              onChange={(e)=>setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full border mt-1 mb-4 px-4 py-2 rounded-lg focus:ring-2 focus:ring-indigo-500"
             />
 
@@ -146,7 +151,7 @@ const Login = () => {
             <input
               type="password"
               value={password}
-              onChange={(e)=>setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full border mt-1 mb-6 px-4 py-2 rounded-lg focus:ring-2 focus:ring-indigo-500"
             />
 

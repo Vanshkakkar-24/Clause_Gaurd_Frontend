@@ -92,7 +92,12 @@ const Register = () => {
       localStorage.setItem(
         "token",
         res.data.access_token
-      );
+      )
+
+      localStorage.setItem(
+        "userType",
+        accountType
+      )
 
       navigate("/");
 

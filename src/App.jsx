@@ -18,6 +18,7 @@ import History from "./pages/app/History"
 import Settings from "./pages/app/Settings"
 import Dashboard from "./pages/app/Dashboard"
 import ActivityDetails from "./pages/app/ActivityDetails"
+import Redraft from "./pages/app/Redraft"
 
 function App() {
 
@@ -63,6 +64,8 @@ function App() {
               <Route path="/app/dashboard" element={<Dashboard />} />
 
               <Route path="/app/activity/:id" element={<ActivityDetails />} />
+
+              <Route path="/app/redraft" element={<Redraft />} />
 
             </Route>
 
