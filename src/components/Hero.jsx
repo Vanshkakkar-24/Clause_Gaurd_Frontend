@@ -5,23 +5,45 @@ import { useState } from "react"
 
 const Hero = () => {
 
-  const { t } = useTranslation();
-
+  const { t } = useTranslation()
   const navigate = useNavigate()
 
-  const [toast, setToast] = useState("")
+  const [toast,setToast] = useState(null)
 
-  const handleClick = () => {
+  const showLoginToast = () => {
+
+    // force re-render even if same message
+    setToast(null)
+
+    setTimeout(() => {
+
+      setToast({
+        message: t("hero.loginFirst") || "Please login first",
+        id: Date.now()
+      })
+
+    }, 50)
+
+  }
+
+  const requireLogin = () => {
 
     const token = localStorage.getItem("token")
 
-    if (!token) {
+    if(!token){
 
-      setToast(t("hero.loginFirst"))
+      showLoginToast()
 
-      return
-
+      return false
     }
+
+    return true
+
+  }
+
+  const handleUpload = () => {
+
+    if(!requireLogin()) return
 
     navigate("/app/upload")
 
@@ -29,118 +51,72 @@ const Hero = () => {
 
   return (
 
-    <section className="bg-gradient-to-r from-[#0b1026] to-[#121a3a] text-white py-28">
+<section className="relative overflow-hidden pt-40 pb-32 text-center text-white">
 
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+<div className="absolute inset-0 bg-gradient-to-br from-[#071028] via-[#050816] to-[#0b0220]" />
 
-        <div>
+<div className="absolute inset-0 opacity-40 blur-3xl bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600" />
 
-          <div className="inline-block px-4 py-1 mb-6 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">
+<div className="relative max-w-4xl mx-auto px-6">
 
-            {t("hero.badge")}
+<div className="inline-block px-4 py-1 mb-6 rounded-full text-xs tracking-widest bg-cyan-400/10 border border-cyan-400/20 text-cyan-300">
 
-          </div>
+THE FUTURE OF LEGAL INTELLIGENCE
 
-          <h1 className="text-5xl font-bold leading-tight mb-6">
+</div>
 
-            {t("hero.titleLine1")}
-            <span className="text-indigo-400">{t("hero.titleHighlight")}</span>
-            <br />
+<h1 className="text-5xl md:text-6xl font-semibold leading-tight">
 
-            {t("hero.titleLine2")}
+AI-powered contract
+<br/>
+drafting and risk
+<br/>
+analysis
 
-          </h1>
+</h1>
 
-          <p className="text-gray-300 mb-8">
+<p className="mt-6 text-slate-400 max-w-xl mx-auto">
 
-            {t("hero.subtitle")}
+Protect your interests with AI precision. Instant drafting,
+deep risk scanning, and simplified legal terms.
 
-          </p>
+</p>
 
-          <div className="flex gap-4 flex-wrap">
+<div className="mt-10 flex justify-center gap-4 flex-wrap">
 
-            <button
-              type="button"
-              onClick={handleClick}
-              className="bg-indigo-500 hover:bg-indigo-600 px-6 py-3 rounded-xl font-medium"
-            >
+<button
+onClick={handleUpload}
+className="px-7 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-500 shadow-lg hover:opacity-90 transition"
+>
 
-              {t("hero.analyze")}
+Start Free
 
-            </button>
+</button>
 
-            <a
-              href="#steps"
-              className="border border-gray-500 px-6 py-3 rounded-xl"
-            >
+<button
+onClick={handleUpload}
+className="px-7 py-3 rounded-xl border border-white/20 bg-white/5 backdrop-blur hover:bg-white/10 transition"
+>
 
-              {t("hero.howItWorks")}
+⬆ Upload Contract
 
-            </a>
+</button>
 
-          </div>
+</div>
 
-          <div className="flex gap-6 text-sm text-gray-400 mt-6 flex-wrap">
+</div>
 
-            <span>{t("hero.badgePdf")}</span>
+{toast && (
+<Toast
+key={toast.id}
+message={toast.message}
+type="error"
+/>
+)}
 
-            <span>{t("hero.badgeInstant")}</span>
+</section>
 
-            <span>{t("hero.badgeFree")}</span>
-
-          </div>
-
-        </div>
-
-        <div className="bg-[#1c2445] p-6 rounded-2xl border border-indigo-500/20 shadow-xl">
-
-          <div className="space-y-3 text-sm">
-
-            <div className="bg-red-500/20 p-3 rounded">
-
-              {t("hero.demoHigh")}
-
-            </div>
-
-            <div className="bg-yellow-500/20 p-3 rounded">
-
-              {t("hero.demoMedium")}
-
-            </div>
-
-            <div className="bg-green-500/20 p-3 rounded">
-
-              {t("hero.demoLow")}
-
-            </div>
-
-            <div className="mt-4">
-
-              <div className="text-xs text-gray-400">
-
-                {t("hero.overallRisk")}
-
-              </div>
-
-              <div className="h-2 bg-gray-700 rounded mt-1">
-
-                <div className="h-2 w-2/3 bg-red-500 rounded"></div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      {toast && <Toast message={toast} type="error" />}
-
-    </section>
-
-  )
+)
 
 }
 

@@ -1,74 +1,73 @@
-import { useMemo } from "react";
-import { useTranslation } from "react-i18next";
-
 const Features = () => {
 
-  const { t } = useTranslation();
+const features = [
 
-  const features = useMemo(() => ([
-    { title: t("features.items.smartRisk.title"), desc: t("features.items.smartRisk.desc") },
-    { title: t("features.items.simplifier.title"), desc: t("features.items.simplifier.desc") },
-    { title: t("features.items.compare.title"), desc: t("features.items.compare.desc") },
-    { title: t("features.items.negotiate.title"), desc: t("features.items.negotiate.desc") },
-    { title: t("features.items.chat.title"), desc: t("features.items.chat.desc") },
-    { title: t("features.items.multiLang.title"), desc: t("features.items.multiLang.desc") },
-  ]), [t]);
+{
+title:"AI Contract Drafting",
+desc:"Generate legally sound contracts from simple prompts"
+},
 
-  return (
+{
+title:"Contract Risk Analysis",
+desc:"Detect risky clauses instantly using AI"
+},
 
-    <section id="features" className="py-28 bg-white text-gray-900">
+{
+title:"Contract Comparison",
+desc:"Compare multiple agreements clause by clause"
+},
 
-      <div className="max-w-7xl mx-auto px-6">
+{
+title:"Simplifier",
+desc:"Convert legal jargon into easy language"
+},
 
-        <div className="text-center mb-14">
+{
+title:"Negotiation Suggestions",
+desc:"AI suggests counter clauses to improve position"
+},
 
-          <span className="text-indigo-500 text-sm">
+]
 
-            {t("features.label")}
+return (
 
-          </span>
+<section id="features" className="bg-[#050816] py-32 text-white">
 
-          <h2 className="text-4xl font-bold mt-3">
+<div className="max-w-7xl mx-auto px-6">
 
-            {t("features.title")}
+<h2 className="text-center text-3xl mb-16 font-semibold">
+Neural Contract Modules
+</h2>
 
-          </h2>
+<div className="grid md:grid-cols-3 gap-8">
 
-        </div>
+{features.map(f => (
 
-        <div className="grid md:grid-cols-3 gap-8">
+<div
+key={f.title}
+className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur hover:bg-white/10 transition"
+>
 
-          {features.map((f) => (
+<h3 className="font-medium text-cyan-300 mb-2">
+{f.title}
+</h3>
 
-            <div
-              key={f.title}
-              className="border p-6 rounded-xl hover:shadow-lg"
-            >
+<p className="text-sm text-slate-400">
+{f.desc}
+</p>
 
-              <div className="text-indigo-500 font-semibold mb-2">
+</div>
 
-                {f.title}
+))}
 
-              </div>
+</div>
 
-              <p className="text-gray-500 text-sm">
+</div>
 
-                {f.desc}
+</section>
 
-              </p>
+)
 
-            </div>
+}
 
-          ))}
-
-        </div>
-
-      </div>
-
-    </section>
-
-  );
-
-};
-
-export default Features;
+export default Features

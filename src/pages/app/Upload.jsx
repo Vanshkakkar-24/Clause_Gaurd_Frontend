@@ -80,12 +80,12 @@ const Upload = () => {
   const riskColor = (level) => {
 
     if (level === "High")
-      return "bg-red-100 text-red-700 border-red-200"
+      return "bg-red-50 border-red-200 text-gray-900"
 
     if (level === "Medium")
-      return "bg-yellow-100 text-yellow-700 border-yellow-200"
+      return "bg-yellow-50 border-yellow-200 text-gray-900"
 
-    return "bg-green-100 text-green-700 border-green-200"
+    return "bg-green-50 border-green-200 text-gray-900"
 
   }
 
@@ -190,6 +190,7 @@ const Upload = () => {
               rounded-xl
               p-6
               shadow-sm
+              text-gray-900
             ">
 
               <div className="flex justify-between items-center">
@@ -254,7 +255,7 @@ const Upload = () => {
                     key={key}
                     className="
                       border rounded-lg
-                      p-4 bg-white
+                      p-4 bg-white text-gray-900
                     "
                   >
 
@@ -298,7 +299,7 @@ const Upload = () => {
                     `}
                   >
 
-                    <div className="flex justify-between">
+                    <div className="flex justify-between text-gray-800">
 
                       <h3 className="font-semibold">
 
@@ -306,7 +307,7 @@ const Upload = () => {
 
                       </h3>
 
-                      <span className="text-xs font-medium">
+                      <span className="text-xs font-medium text-gray-800">
 
                         {trRisk(clause.risk_level)}
 
@@ -315,7 +316,7 @@ const Upload = () => {
                     </div>
 
 
-                    <p className="mt-2 text-sm">
+                    <p className="mt-2 text-sm text-gray-800">
 
                       {clause.explanation}
 
