@@ -4,13 +4,25 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* Global base styles */
 @layer base {
+
   body {
-    @apply bg-ethereal-dark text-ethereal-text font-sans antialiased selection:bg-ethereal-brand selection:text-black;
+
+    background-color: theme('colors.ethereal.dark');
+    color: theme('colors.ethereal.text');
+
+    @apply font-sans antialiased selection:bg-ethereal-brand selection:text-black;
+
   }
+
 }
 
+
+/* marquee animation */
 @keyframes marquee {
+
   0% {
     transform: translateX(100%);
   }
@@ -18,8 +30,11 @@
   100% {
     transform: translateX(-100%);
   }
+
 }
 
 .animate-marquee {
+
   animation: marquee 30s linear infinite;
+
 }
