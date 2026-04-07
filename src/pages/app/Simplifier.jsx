@@ -10,8 +10,6 @@ import api from "../../services/api"
 
 const Simplifier = () => {
 
-  const { t } = useTranslation()
-
   const [file, setFile] = useState(null)
   const [loading, setLoading] = useState(false)
   const [response, setResponse] = useState(null)
@@ -78,7 +76,7 @@ const Simplifier = () => {
       {success && <Toast message={success} type="success" />}
 
       <h1 className="text-3xl font-semibold mb-2">
-        {t("simplifier.title") || "Simplify Contract"}
+        {"Simplify Contract"}
       </h1>
 
       <p className="text-gray-500 mb-6">
@@ -124,7 +122,7 @@ const Simplifier = () => {
           <div className="mt-12 space-y-8">
 
             <h2 className="text-xl font-semibold">
-              {t("simplifier.resultTitle") || "Simplified Contract"}
+              {"Simplified Contract"}
             </h2>
 
 

@@ -3,7 +3,7 @@ import axios from "axios";
 import { LOCALE_STORAGE_KEY } from "../i18n/constants";
 
 const API = axios.create({
-  baseURL: "https://clause-gaurd-backend.onrender.com",
+  baseURL: "http://localhost:8000",
 });
 
 function getAppLocale() {
@@ -83,7 +83,12 @@ export const getActivities = () =>
 
 // EMAIL
 
-export const generateEmail = (data) =>
-  API.post("/generate-email", data);
+export const generateEmail = (data) => {
+  API.post("/generate-email", data, {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    },
+  })
+}
 
 export default API;

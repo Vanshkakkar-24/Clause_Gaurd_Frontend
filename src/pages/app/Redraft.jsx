@@ -19,7 +19,7 @@ const Redraft = () => {
 
   useEffect(() => {
 
-    if(location.state){
+    if (location.state) {
 
       setFile(location.state.file)
       setClauses(location.state.clauses)
@@ -38,7 +38,7 @@ const Redraft = () => {
       c.clause_title === clause.clause_title
     )
 
-    if(exists){
+    if (exists) {
 
       setSelectedClauses(
         selectedClauses.filter(c =>
@@ -47,7 +47,7 @@ const Redraft = () => {
       )
 
     }
-    else{
+    else {
 
       setSelectedClauses([...selectedClauses, clause])
 
@@ -58,7 +58,7 @@ const Redraft = () => {
 
   const handleRedraft = async () => {
 
-    try{
+    try {
 
       setLoading(true)
       setError("")
@@ -77,7 +77,7 @@ const Redraft = () => {
         "/redraft/file",
         formData,
         {
-          responseType:"blob"
+          responseType: "blob"
         }
       )
 
@@ -90,12 +90,12 @@ const Redraft = () => {
       setSuccess("Redrafted contract ready!")
 
     }
-    catch{
+    catch {
 
       setError("Redrafting failed")
 
     }
-    finally{
+    finally {
 
       setLoading(false)
 
@@ -106,10 +106,10 @@ const Redraft = () => {
 
   const riskColor = (level) => {
 
-    if(level === "High")
+    if (level === "High")
       return "bg-red-100 border-red-300"
 
-    if(level === "Medium")
+    if (level === "Medium")
       return "bg-yellow-100 border-yellow-300"
 
     return "bg-green-100 border-green-300"
@@ -117,15 +117,15 @@ const Redraft = () => {
   }
 
 
-  return(
+  return (
 
     <div className="max-w-6xl mx-auto px-4 py-10">
 
-      {loading && <Loader/>}
+      {loading && <Loader />}
 
-      {error && <Toast message={error} type="error"/>}
+      {error && <Toast message={error} type="error" />}
 
-      {success && <Toast message={success} type="success"/>}
+      {success && <Toast message={success} type="success" />}
 
 
       <h1 className="text-3xl font-semibold mb-4">
@@ -143,11 +143,11 @@ const Redraft = () => {
 
       {/* CLAUSES */}
 
-      <div className="mt-8 space-y-4">
+      <div className="mt-8 space-y-4 text-gray-800">
 
         {
 
-          clauses.map((clause,index)=>(
+          clauses.map((clause, index) => (
 
             <div
               key={index}
@@ -155,6 +155,7 @@ const Redraft = () => {
                 border
                 rounded-xl
                 p-5
+                text-grey-800
                 ${riskColor(clause.risk_level)}
               `}
             >
@@ -190,11 +191,11 @@ const Redraft = () => {
 
               <div className="mt-2 text-sm">
 
-                <b>Recommendation:</b>
+                <b>Suggestion:</b>
 
                 <span className="ml-1">
 
-                  {clause.recommendation}
+                  {clause.suggestion}
 
                 </span>
 

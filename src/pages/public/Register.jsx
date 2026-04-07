@@ -108,14 +108,14 @@ const Register = () => {
               Individual
             </button>
             <button
-              onClick={() => setAccountType("Organizer")}
+              onClick={() => setAccountType("Organization")}
               className={`flex-1 py-2 text-sm font-medium rounded-full transition ${
-                accountType === "Organizer"
+                accountType === "Organization"
                   ? "bg-ethereal-brand text-[#041010]"
                   : "text-ethereal-textMuted hover:text-ethereal-text"
               }`}
             >
-              Organizer
+              Organization
             </button>
           </div>
 

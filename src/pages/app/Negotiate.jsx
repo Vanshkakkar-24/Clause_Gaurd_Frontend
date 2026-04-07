@@ -82,6 +82,11 @@ const Negotiate = () => {
               c => c.suggestion
             )
 
+        },
+        {
+          headers: {
+            "Content-Type": "application/json"
+          }
         }
       )
 
@@ -242,7 +247,6 @@ ${email.email_body.replace(/\*\*/g, "")}`
               border
               rounded-xl
               p-6
-              bg-gray-50
               shadow-sm
             "
           >

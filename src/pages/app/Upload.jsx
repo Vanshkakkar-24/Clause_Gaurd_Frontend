@@ -20,7 +20,7 @@ const Upload = () => {
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
 
-  const userType = localStorage.getItem("userType")
+  const userType = localStorage.getItem("userType")?.toLowerCase()
 
   useEffect(() => {
 
@@ -80,12 +80,12 @@ const Upload = () => {
   const riskColor = (level) => {
 
     if (level === "High")
-      return "bg-red-50 border-red-200 text-gray-900"
+      return "bg-red-100 text-red-700 border-red-200"
 
     if (level === "Medium")
-      return "bg-yellow-50 border-yellow-200 text-gray-900"
+      return "bg-yellow-100 text-yellow-700 border-yellow-200"
 
-    return "bg-green-50 border-green-200 text-gray-900"
+    return "bg-green-100 text-green-700 border-green-200"
 
   }
 
@@ -190,7 +190,6 @@ const Upload = () => {
               rounded-xl
               p-6
               shadow-sm
-              text-gray-900
             ">
 
               <div className="flex justify-between items-center">
@@ -203,7 +202,7 @@ const Upload = () => {
 
                   </p>
 
-                  <p className="font-semibold">
+                  <p className="text-gray-500 font-semibold">
 
                     {response.contract_overview.contract_type}
 
@@ -220,7 +219,7 @@ const Upload = () => {
 
                   </p>
 
-                  <p className="text-2xl font-bold">
+                  <p className="text-2xl font-bold text-gray-500">
 
                     {response.overall_risk_score}/10
 
@@ -255,7 +254,7 @@ const Upload = () => {
                     key={key}
                     className="
                       border rounded-lg
-                      p-4 bg-white text-gray-900
+                      p-4 bg-white
                     "
                   >
 
@@ -265,7 +264,7 @@ const Upload = () => {
 
                     </p>
 
-                    <p className="text-lg font-semibold">
+                    <p className="text-lg font-semibold text-gray-500">
 
                       {value}/10
 
@@ -299,7 +298,7 @@ const Upload = () => {
                     `}
                   >
 
-                    <div className="flex justify-between text-gray-800">
+                    <div className="flex justify-between">
 
                       <h3 className="font-semibold">
 
@@ -307,7 +306,7 @@ const Upload = () => {
 
                       </h3>
 
-                      <span className="text-xs font-medium text-gray-800">
+                      <span className="text-xs font-medium">
 
                         {trRisk(clause.risk_level)}
 
@@ -316,7 +315,7 @@ const Upload = () => {
                     </div>
 
 
-                    <p className="mt-2 text-sm text-gray-800">
+                    <p className="mt-2 text-sm">
 
                       {clause.explanation}
 
@@ -325,11 +324,11 @@ const Upload = () => {
 
                     <div className="mt-3 text-sm">
 
-                      <b>{t("upload.recommendation")}</b>
+                      <b>{"Suggestion: "}</b>
 
                       <span className="ml-1">
 
-                        {clause.recommendation}
+                        {clause.suggestion}
 
                       </span>
 

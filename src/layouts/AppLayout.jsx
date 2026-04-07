@@ -7,12 +7,12 @@ const AppLayout = () => {
     { label: "Analyze", path: "/app/upload", icon: "📄" }, // using upload as analyze entry point based on user logic
     { label: "Comparisons", path: "/app/compare", icon: "⇋" },
     { label: "Simplify", path: "/app/simplify", icon: "✨" },
-    {label: "Dashboard", path: "/app/dashboard", icon: "📊"},
+    { label: "Dashboard", path: "/app/dashboard", icon: "📊" },
   ];
 
   return (
     <div className="flex h-screen bg-ethereal-dark text-ethereal-text font-sans overflow-hidden">
-      
+
       {/* Sidebar */}
       <aside className="w-64 flex flex-col border-r border-ethereal-border bg-[#051111] z-20">
         <div className="p-6">
@@ -31,11 +31,10 @@ const AppLayout = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl transition font-medium text-sm ${
-                  isActive 
-                    ? "bg-ethereal-brand/10 text-ethereal-brandLight border border-ethereal-brand/20 shadow-[inset_4px_0_0_0_rgba(45,212,191,1)]" 
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl transition font-medium text-sm ${isActive
+                    ? "bg-ethereal-brand/10 text-ethereal-brandLight border border-ethereal-brand/20 shadow-[inset_4px_0_0_0_rgba(45,212,191,1)]"
                     : "text-ethereal-textMuted hover:text-ethereal-text hover:bg-white/5"
-                }`}
+                  }`}
               >
                 <span className={`text-lg ${isActive ? "text-ethereal-brandLight" : "opacity-60"}`}>{item.icon}</span>
                 {item.label}
@@ -45,18 +44,57 @@ const AppLayout = () => {
         </nav>
 
         <div className="p-6">
-          <button className="w-full py-2.5 rounded-lg text-[13px] font-semibold bg-gradient-to-r from-[#5eead4] to-[#2dd4bf] text-[#041010] shadow-[0_0_15px_rgba(45,212,191,0.2)] hover:shadow-[0_0_20px_rgba(45,212,191,0.4)] transition uppercase tracking-wider">
-            + New Analysis
-          </button>
-          <div className="mt-4 flex items-center gap-2 cursor-pointer text-ethereal-textMuted hover:text-ethereal-text text-[13px]">
-            <span className="text-lg">❓</span> Support
+
+          <div className="
+    rounded-xl
+    border border-ethereal-brand/20
+    bg-gradient-to-br from-[#062222] to-[#041616]
+    p-4
+    shadow-[0_0_25px_rgba(45,212,191,0.08)]
+  ">
+
+            <div className="text-[11px] uppercase tracking-widest text-ethereal-textMuted mb-2">
+              AI Voice Assistant
+            </div>
+
+            <div className="text-sm font-semibold text-ethereal-text mb-2">
+              Talk to Contract AI
+            </div>
+
+            <div className="text-xs text-ethereal-textMuted mb-4 leading-relaxed">
+              Call our AI assistant to instantly understand clauses, risks, and negotiation strategies.
+            </div>
+
+            <a
+              href="tel:+16625164009"
+              className="
+        block
+        text-center
+        py-2.5
+        rounded-lg
+        text-[13px]
+        font-semibold
+        bg-gradient-to-r
+        from-[#5eead4]
+        to-[#2dd4bf]
+        text-[#041010]
+        shadow-[0_0_15px_rgba(45,212,191,0.25)]
+        hover:shadow-[0_0_25px_rgba(45,212,191,0.45)]
+        transition
+        tracking-wide
+      "
+            >
+              📞 +1 662-516-4009
+            </a>
+
           </div>
+
         </div>
       </aside>
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col relative overflow-hidden bg-gradient-to-br from-[#061515] to-[#030a0a]">
-        
+
         {/* Top Header */}
         <header className="h-16 flex items-center justify-between px-8 border-b border-ethereal-border/50 bg-[#061515]/80 backdrop-blur">
           <div className="flex items-center gap-6 text-sm font-medium">
