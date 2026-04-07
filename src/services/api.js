@@ -3,7 +3,7 @@ import axios from "axios";
 import { LOCALE_STORAGE_KEY } from "../i18n/constants";
 
 const API = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: "https://clause-gaurd-backend.onrender.com",
 });
 
 function getAppLocale() {
